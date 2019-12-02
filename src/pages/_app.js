@@ -1,4 +1,5 @@
 import Head from "next/head";
+import "../lib/bulma.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
 
       <style jsx>{`
         :global(body) {
-          font-family: Inter, Helvetica, sans-serif;
+          font-family: Inter, Helvetica, sans-serif !important;
         }
       `}</style>
     </>
