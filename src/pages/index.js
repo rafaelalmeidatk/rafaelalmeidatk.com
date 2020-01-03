@@ -73,7 +73,7 @@ const Home = () => (
       .heading h1 {
         font-size: 4.5em;
         font-weight: 740;
-        line-height: 1em;
+        line-height: 1.15em;
         letter-spacing: -0.025em;
       }
 
@@ -85,6 +85,7 @@ const Home = () => (
       }
 
       .projects {
+        background: #121212;
         margin-top: 46px;
       }
 
