@@ -36,14 +36,23 @@ const Home = () => (
 
     <section className="heading">
       <Noise />
+
       <div className="container">
         <h1>
           Hi! I'm <span className="highlight">Rafael Almeida</span>, and I try
           to not break the web
         </h1>
+
         <p>
-          I am mostly working with bleeding edge technologies, learning
-          something new almost everyday.
+          I am mostly working with bleeding edge technologies,{" "}
+          <a
+            href="https://github.com/rafaelalmeidatk/TIL"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            learning something new almost everyday
+          </a>
+          .
         </p>
       </div>
     </section>
@@ -82,6 +91,11 @@ const Home = () => (
         font-size: 1.5em;
         font-weight: 300;
         letter-spacing: -0.06em;
+      }
+
+      .heading a {
+        color: #fff;
+        text-decoration: underline;
       }
 
       .projects {
