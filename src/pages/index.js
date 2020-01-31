@@ -36,10 +36,9 @@ const Home = () => (
 
     <section className="heading">
       <Noise />
-
       <div className="container">
         <h1>
-          Hi! I'm <span className="highlight">Rafael Almeida</span>, and I try
+          Hi! I am <span className="highlight">Rafael Almeida</span>, and I try
           to not break the web
         </h1>
 
@@ -54,6 +53,62 @@ const Home = () => (
           </a>
           .
         </p>
+      </div>
+    </section>
+
+    <section className="about-me">
+      <div className="container">
+        <div className="box">
+          <div className="box-border tl" />
+          <div className="box-border tr" />
+          <div className="box-border bl" />
+          <div className="box-border br" />
+          <div>
+            <span className="key">github</span>
+            <span className="value">
+              <a href="https://github.com/rafaelalmeidatk">
+                github.com/rafaelalmeidatk
+              </a>
+            </span>
+          </div>
+          <div>
+            <span className="key">main languages</span>
+            <span className="value">JavaScript and C#</span>
+          </div>
+          <div>
+            <span className="key">toolbelt</span>
+            <span className="value">
+              Node.js, React & React Native, Electron, Redux, GraphQL, Apollo,
+              Express
+            </span>
+          </div>
+        </div>
+
+        <div className="box">
+          <div className="box-border tl" />
+          <div className="box-border tr" />
+          <div className="box-border bl" />
+          <div className="box-border br" />
+          <div>
+            <span className="key">github</span>
+            <span className="value">
+              <a href="https://github.com/rafaelalmeidatk">
+                github.com/rafaelalmeidatk
+              </a>
+            </span>
+          </div>
+          <div>
+            <span className="key">main languages</span>
+            <span className="value">JavaScript and C#</span>
+          </div>
+          <div>
+            <span className="key">toolbelt</span>
+            <span className="value">
+              Node.js, React & React Native, Electron, Redux, GraphQL, Apollo,
+              Express
+            </span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -72,10 +127,19 @@ const Home = () => (
     </section>
 
     <style jsx>{`
+      :global(html, body) {
+        background: #121212;
+        color: #fff;
+      }
+
+      a {
+        color: #fff;
+        text-decoration: underline;
+      }
+
       .heading {
         position: relative;
-        padding: 10rem 2rem;
-        color: #fff;
+        padding: 10rem 2rem 4rem;
         background: #121212;
       }
 
@@ -93,9 +157,58 @@ const Home = () => (
         letter-spacing: -0.06em;
       }
 
-      .heading a {
-        color: #fff;
-        text-decoration: underline;
+      .about-me .box {
+        max-width: 500px;
+        padding: 14px 18px;
+        position: relative;
+      }
+
+      .about-me .box-border {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border: 0 solid #fff;
+      }
+
+      .box-border.tl.tl {
+        top: 0;
+        left: 0;
+        border-top-width: 2px;
+        border-left-width: 2px;
+      }
+      .box-border.tr.tr {
+        top: 0;
+        right: 0;
+        border-top-width: 2px;
+        border-right-width: 2px;
+      }
+      .box-border.bl.bl {
+        bottom: 0;
+        left: 0;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+      }
+
+      .box-border.br.br {
+        bottom: 0;
+        right: 0;
+        border-bottom-width: 2px;
+        border-right-width: 2px;
+      }
+
+      .about-me .key {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: monospace;
+      }
+
+      .about-me .value {
+        margin-left: 6px;
+      }
+
+      .about-me .container {
+        display: flex;
+        justify-content: space-around;
       }
 
       .projects {
