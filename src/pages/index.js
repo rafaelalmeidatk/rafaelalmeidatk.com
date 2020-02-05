@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Typist from "react-typist";
 import Noise from "../components/Noise";
 
 // This file will be a mess until I figure out what I want to do :P
@@ -37,7 +38,7 @@ const Home = () => (
     <section className="heading">
       <Noise />
       <div className="container">
-        <div className="flash-animation">
+        <div className="hidden">
           <h1>
             Hi! I am <span className="highlight">Rafael Almeida</span>, and I
             try to not break the web
@@ -54,6 +55,31 @@ const Home = () => (
             </a>
             .
           </p>
+        </div>
+        <div className="flash-animation">
+          <Typist
+            startDelay={700}
+            stdTypingDelay={5}
+            avgTypingDelay={5}
+            cursor={{ show: false }}
+          >
+            <h1>
+              Hi! I am <span className="highlight">Rafael Almeida</span>, and I
+              try to not break the web
+            </h1>
+
+            <p>
+              I am mostly working with bleeding edge technologies,{" "}
+              <a
+                href="https://github.com/rafaelalmeidatk/TIL"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                learning something new almost everyday
+              </a>
+              .
+            </p>
+          </Typist>
         </div>
       </div>
     </section>
@@ -159,7 +185,21 @@ const Home = () => (
         letter-spacing: -0.06em;
       }
 
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .heading .container {
+        position: relative;
+      }
+
       .flash-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         animation: heading-flash 0.7s steps(1, end);
       }
 
