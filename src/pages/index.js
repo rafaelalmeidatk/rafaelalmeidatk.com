@@ -246,24 +246,28 @@ const Home = () => (
         padding: 14px 18px;
         position: relative;
         overflow: hidden;
-        animation: box-open 0.5s ease-out;
+        opacity: 0%;
+        animation: box-open 0.5s ease-out 0.8s forwards;
       }
 
       .about-me .box .content {
-        animation: box-open-content 0.5s ease-out;
+        animation: box-open-content 0.5s ease-out 0.8s;
       }
 
       @keyframes box-open {
         0% {
+          opacity: 0%;
           height: 0;
           background: #fff;
         }
 
         30% {
+          opacity: 100%;
           background: #fff;
         }
 
         100% {
+          opacity: 100%;
           height: 127px;
         }
       }
