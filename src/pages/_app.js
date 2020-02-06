@@ -10,9 +10,17 @@ function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
 
-      <style jsx>{`
-        :global(body) {
+      <style jsx global>{`
+        html,
+        body {
+          background: #121212;
+          color: #fff;
           font-family: Inter, Helvetica, sans-serif !important;
+        }
+
+        a {
+          color: #fff;
+          text-decoration: underline;
         }
       `}</style>
     </>
