@@ -110,6 +110,10 @@ const Home = () => (
               Express
             </span>
           </div>
+          <div>
+            <span className="key">Favorite Games</span>
+            <span className="value">MapleStory, Portal 2, FEZ, Terraria</span>
+          </div>
         </div>
       </div>
     </section>
@@ -268,7 +272,7 @@ const Home = () => (
 
         100% {
           opacity: 100%;
-          height: 127px;
+          height: 157px;
         }
       }
 
@@ -326,7 +330,7 @@ const Home = () => (
       }
 
       .about-me {
-        height: 130px;
+        height: 180px;
         display: flex;
         justify-content: space-around;
         align-items: center;
