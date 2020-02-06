@@ -195,7 +195,7 @@ const Home = () => (
         <div className="box-border br" />
 
         <div className="content">
-          <div>
+          <div className="row">
             <span className="key">Github</span>
             <span className="value">
               <a href="https://github.com/rafaelalmeidatk">
@@ -204,12 +204,12 @@ const Home = () => (
             </span>
           </div>
 
-          <div>
+          <div className="row">
             <span className="key">Main Languages</span>
             <span className="value">JavaScript and C#</span>
           </div>
 
-          <div>
+          <div className="row">
             <span className="key">Toolbelt</span>
             <span className="value">
               Node.js, React & React Native, Electron, Redux, GraphQL, Apollo,
@@ -217,7 +217,7 @@ const Home = () => (
             </span>
           </div>
 
-          <div>
+          <div className="row">
             <span className="key">Favorite Games</span>
             <span className="value">MapleStory, Portal 2, FEZ, Terraria</span>
           </div>
@@ -362,16 +362,16 @@ const Home = () => (
       }
 
       .about-me .box {
-        max-width: 500px;
-        padding: 14px 18px;
+        max-width: 524px;
+        padding: 14px 28px;
         position: relative;
         overflow: hidden;
         opacity: 0%;
-        animation: box-open 0.5s ease-out 0.8s forwards;
+        animation: box-open 0.2s ease-out 0.8s forwards;
       }
 
       .about-me .box .content {
-        animation: box-open-content 0.5s ease-out 0.8s;
+        animation: box-open-content 0.2s ease-out 0.8s;
       }
 
       @keyframes box-open {
@@ -388,7 +388,7 @@ const Home = () => (
 
         100% {
           opacity: 100%;
-          height: 157px;
+          height: 162px;
         }
       }
 
@@ -416,12 +416,14 @@ const Home = () => (
         border-left-width: 2px;
       }
       .box-border.tr.tr {
+        visibility: hidden;
         top: 0;
         right: 0;
         border-top-width: 2px;
         border-right-width: 2px;
       }
       .box-border.bl.bl {
+        visibility: hidden;
         bottom: 0;
         left: 0;
         border-bottom-width: 2px;
@@ -435,14 +437,19 @@ const Home = () => (
         border-right-width: 2px;
       }
 
+      .about-me .row {
+        margin: 2px 0;
+      }
+
       .about-me .key {
         text-transform: uppercase;
         font-weight: bold;
         font-family: monospace;
+        letter-spacing: 0.02em;
       }
 
       .about-me .value {
-        margin-left: 6px;
+        margin-left: 8px;
       }
 
       .about-me {
