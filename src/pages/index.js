@@ -84,15 +84,15 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="about-me">
-      <div className="container">
-        <div className="box">
-          <div className="box-border tl" />
-          <div className="box-border tr" />
-          <div className="box-border bl" />
-          <div className="box-border br" />
+    <section className="about-me container">
+      <div className="box">
+        <div className="box-border tl" />
+        <div className="box-border tr" />
+        <div className="box-border bl" />
+        <div className="box-border br" />
+        <div className="content">
           <div>
-            <span className="key">github</span>
+            <span className="key">Github</span>
             <span className="value">
               <a href="https://github.com/rafaelalmeidatk">
                 github.com/rafaelalmeidatk
@@ -100,37 +100,11 @@ const Home = () => (
             </span>
           </div>
           <div>
-            <span className="key">main languages</span>
+            <span className="key">Main Languages</span>
             <span className="value">JavaScript and C#</span>
           </div>
           <div>
-            <span className="key">toolbelt</span>
-            <span className="value">
-              Node.js, React & React Native, Electron, Redux, GraphQL, Apollo,
-              Express
-            </span>
-          </div>
-        </div>
-
-        <div className="box">
-          <div className="box-border tl" />
-          <div className="box-border tr" />
-          <div className="box-border bl" />
-          <div className="box-border br" />
-          <div>
-            <span className="key">github</span>
-            <span className="value">
-              <a href="https://github.com/rafaelalmeidatk">
-                github.com/rafaelalmeidatk
-              </a>
-            </span>
-          </div>
-          <div>
-            <span className="key">main languages</span>
-            <span className="value">JavaScript and C#</span>
-          </div>
-          <div>
-            <span className="key">toolbelt</span>
+            <span className="key">Toolbelt</span>
             <span className="value">
               Node.js, React & React Native, Electron, Redux, GraphQL, Apollo,
               Express
@@ -271,6 +245,37 @@ const Home = () => (
         max-width: 500px;
         padding: 14px 18px;
         position: relative;
+        overflow: hidden;
+        animation: box-open 0.5s ease-out;
+      }
+
+      .about-me .box .content {
+        animation: box-open-content 0.5s ease-out;
+      }
+
+      @keyframes box-open {
+        0% {
+          height: 0;
+          background: #fff;
+        }
+
+        30% {
+          background: #fff;
+        }
+
+        100% {
+          height: 127px;
+        }
+      }
+
+      @keyframes box-open-content {
+        0% {
+          transform: translateY(-50%);
+        }
+
+        100% {
+          transform: translateY(0%);
+        }
       }
 
       .about-me .box-border {
@@ -316,9 +321,11 @@ const Home = () => (
         margin-left: 6px;
       }
 
-      .about-me .container {
+      .about-me {
+        height: 130px;
         display: flex;
         justify-content: space-around;
+        align-items: center;
       }
 
       .projects {
