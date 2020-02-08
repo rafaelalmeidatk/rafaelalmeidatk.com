@@ -10,6 +10,7 @@ const Noise = () => (
         right: 0;
         bottom: 0;
         background-image: url("/imgs/noise.png");
+        opacity: 0.8;
         animation: 0.2s infinite noise;
       }
 
