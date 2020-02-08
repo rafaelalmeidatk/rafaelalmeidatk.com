@@ -84,6 +84,9 @@ const Projects = () => (
         font-weight: 700;
         letter-spacing: 0.09em;
         text-transform: uppercase;
+
+        opacity: 0%;
+        animation: glitch 0.4s steps(1, end) 1s forwards;
       }
 
       .title-wrapper {
@@ -106,6 +109,43 @@ const Projects = () => (
       .columnn {
         margin: 24px 14px;
         width: calc(50% - 28px);
+      }
+
+      @keyframes glitch {
+        0% {
+          clip-path: inset(0 0% 0 0);
+          background: #fff;
+          opacity: 100%;
+        }
+
+        20% {
+          opacity: 0%;
+        }
+
+        40% {
+          opacity: 100%;
+        }
+
+        60% {
+          clip-path: inset(30% 0 0 0);
+        }
+
+        70% {
+          opacity: 0%;
+        }
+
+        80% {
+          opacity: 100%;
+        }
+
+        90% {
+          opacity: 0%;
+        }
+
+        100% {
+          opacity: 100%;
+          background: #121212;
+        }
       }
     `}</style>
   </section>
