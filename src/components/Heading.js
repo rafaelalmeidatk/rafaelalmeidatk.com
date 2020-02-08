@@ -1,52 +1,51 @@
 import React from "react";
-import Typist from "react-typist";
+
+const Content = () => (
+  <>
+    <h1>
+      Hi! I am <span className="highlight">Rafael Almeida</span>, and I try to
+      not break the web
+    </h1>
+
+    <p>
+      I am mostly working with bleeding edge technologies,{" "}
+      <a
+        href="https://github.com/rafaelalmeidatk/TIL"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        learning something new almost everyday
+      </a>
+      .
+    </p>
+
+    <style jsx>{`
+      h1 {
+        font-size: 4.5em;
+        font-weight: 740;
+        line-height: 1.15em;
+        letter-spacing: -0.025em;
+      }
+
+      p {
+        margin-top: 16px;
+        font-size: 1.5em;
+        font-weight: 300;
+        letter-spacing: -0.06em;
+      }
+    `}</style>
+  </>
+);
 
 const Heading = () => (
   <section className="heading">
     <div className="container">
       <div className="hidden">
-        <h1>
-          Hi! I am <span className="highlight">Rafael Almeida</span>, and I try
-          to not break the web
-        </h1>
-
-        <p>
-          I am mostly working with bleeding edge technologies,{" "}
-          <a
-            href="https://github.com/rafaelalmeidatk/TIL"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            learning something new almost everyday
-          </a>
-          .
-        </p>
+        <Content />
       </div>
 
       <div className="flash-animation">
-        <Typist
-          startDelay={700}
-          stdTypingDelay={5}
-          avgTypingDelay={5}
-          cursor={{ show: false }}
-        >
-          <h1>
-            Hi! I am <span className="highlight">Rafael Almeida</span>, and I
-            try to not break the web
-          </h1>
-
-          <p>
-            I am mostly working with bleeding edge technologies,{" "}
-            <a
-              href="https://github.com/rafaelalmeidatk/TIL"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              learning something new almost everyday
-            </a>
-            .
-          </p>
-        </Typist>
+        <Content />
       </div>
     </div>
 
@@ -54,20 +53,6 @@ const Heading = () => (
       .heading {
         position: relative;
         padding: 10rem 2rem 4rem;
-      }
-
-      .heading h1 {
-        font-size: 4.5em;
-        font-weight: 740;
-        line-height: 1.15em;
-        letter-spacing: -0.025em;
-      }
-
-      .heading p {
-        margin-top: 16px;
-        font-size: 1.5em;
-        font-weight: 300;
-        letter-spacing: -0.06em;
       }
 
       .hidden {
