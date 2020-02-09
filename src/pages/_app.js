@@ -13,6 +13,10 @@ function MyApp({ Component, pageProps }) {
           name="viewport"
           content="width=device-width, initial-scale=1"
         />
+        <meta
+          name="description"
+          content="Software Developer, learning how to break stuff in different ways"
+        ></meta>
       </Head>
 
       <Component {...pageProps} />
