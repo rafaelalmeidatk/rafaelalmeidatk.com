@@ -29,6 +29,10 @@ function MyApp({ Component, pageProps }) {
           color: #fff;
           text-decoration: underline;
         }
+
+        a:hover {
+          color: #9e9e9e;
+        }
       `}</style>
     </>
   );

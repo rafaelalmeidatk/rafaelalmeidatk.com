@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectCard = ({ title, cover }) => {
+const ProjectCard = ({ title, cover, link }) => {
   const [animationNumber, setAnimationNumber] = useState(1);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ const ProjectCard = ({ title, cover }) => {
   });
 
   return (
-    <div className="container">
+    <a className="container" href={link}>
       <div className="cover" style={{ backgroundImage: `url(${cover})` }} />
       <div className="square" />
       <div className={`title top top-anim-${animationNumber}`}>{title}</div>
@@ -32,11 +32,17 @@ const ProjectCard = ({ title, cover }) => {
           animation: glitch 0.2s steps(1, end) 1.4s forwards;
         }
 
-        .container:hover .cover {
+        .container:hover {
+          color: #fff;
+        }
+
+        .container:hover .cover,
+        .container:focus .cover {
           opacity: 0.7;
         }
 
-        .container:hover .title {
+        .container:hover .title,
+        .container:focus .title {
           opacity: 0.8;
         }
 
@@ -90,7 +96,8 @@ const ProjectCard = ({ title, cover }) => {
           animation: glitch-text-top-3 0.4s steps(1, end) 1.4s forwards;
         }
 
-        .container:hover .top {
+        .container:hover .top,
+        .container:focus .top {
           transform: translateX(2px);
         }
 
@@ -111,7 +118,8 @@ const ProjectCard = ({ title, cover }) => {
           animation: glitch-text-bottom-3 0.4s steps(1, end) 1.4s forwards;
         }
 
-        .container:hover .bottom {
+        .container:hover .bottom,
+        .container:focus .bottom {
           transform: translateX(-2px);
         }
 
@@ -253,7 +261,7 @@ const ProjectCard = ({ title, cover }) => {
           }
         }
       `}</style>
-    </div>
+    </a>
   );
 };
 
