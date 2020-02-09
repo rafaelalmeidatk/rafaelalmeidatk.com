@@ -43,13 +43,15 @@ const AboutMe = () => (
         padding: 0 1rem;
         margin-top: 3em;
         margin-bottom: 4em;
-        height: 180px;
+        height: 162px;
         display: flex;
         justify-content: space-around;
         align-items: center;
       }
 
       .box {
+        display: flex;
+        align-items: center;
         max-width: 524px;
         padding: 14px 28px;
         position: relative;
@@ -114,10 +116,20 @@ const AboutMe = () => (
         margin-left: 8px;
       }
 
+      @media (max-width: 580px) {
+        .about-me {
+          height: 232px;
+        }
+
+        .box {
+          padding: 0 12px;
+        }
+      }
+
       @keyframes box-open {
         0% {
           opacity: 0%;
-          height: 0;
+          height: 0%;
           background: #fff;
         }
 
@@ -128,7 +140,7 @@ const AboutMe = () => (
 
         100% {
           opacity: 100%;
-          height: 162px;
+          height: 100%;
         }
       }
 
