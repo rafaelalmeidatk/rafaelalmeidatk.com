@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectCard = ({ title, cover, link }) => {
+const ProjectCard = ({ id, title, cover, link }) => {
   const [animationNumber, setAnimationNumber] = useState(1);
 
   useEffect(() => {
@@ -9,7 +9,12 @@ const ProjectCard = ({ title, cover, link }) => {
 
   return (
     <a className="container" href={link}>
-      <div className="cover" style={{ backgroundImage: `url(${cover})` }} />
+      {cover && (
+        <div
+          className={`cover ${id === "blaze" && "blaze"}`}
+          style={{ backgroundImage: `url(${cover})` }}
+        />
+      )}
       <div className="square" />
       <div className={`title top top-anim-${animationNumber}`}>{title}</div>
       <div className={`title middle`} aria-hidden>
@@ -63,6 +68,10 @@ const ProjectCard = ({ title, cover, link }) => {
           background-position: center center;
           opacity: 0;
           transition: opacity 0.2s ease;
+        }
+
+        .blaze {
+          background-position: 0 -443px;
         }
 
         .square {
