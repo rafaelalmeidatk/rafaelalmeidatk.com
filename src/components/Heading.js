@@ -13,11 +13,18 @@ const Content = () => (
     <p>
       I am mostly working with bleeding edge technologies,{" "}
       <a
-        href="https://github.com/rafaelalmeidatk/TIL"
+        href="https://github.com/rafaelalmeidatk/TIL/issues"
         rel="noopener noreferrer"
         target="_blank"
       >
-        learning something new almost everyday
+        always learning something new
+      </a>
+      .
+    </p>
+    <p>
+      Currently building awesome stuff at{" "}
+      <a href="https://d3.do/" rel="noopener noreferrer" target="_blank">
+        D3
       </a>
       .
     </p>
@@ -35,6 +42,10 @@ const Content = () => (
         font-size: 1.5em;
         font-weight: 300;
         letter-spacing: -0.06em;
+      }
+
+      p ~ p {
+        margin-top: 0;
       }
 
       .glitch {
