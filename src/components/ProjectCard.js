@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 const ProjectCard = ({ id, title, cover, link }) => {
+  const [showCover, setShowCover] = useState(false);
   const [animationNumber, setAnimationNumber] = useState(1);
 
   useEffect(() => {
     setAnimationNumber(Math.floor(Math.random() * 3) + 1);
-  });
+    setTimeout(() => setShowCover(true), 1400); // defer covers loading
+  }, []);
 
   return (
     <a className="container" href={link}>
-      {cover && (
+      {cover && showCover && (
         <div
           className={`cover ${id}`}
           style={{ backgroundImage: `url(${cover})` }}
