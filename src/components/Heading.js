@@ -54,12 +54,12 @@ const Content = () => (
 
       .glitch::before {
         opacity: 0%;
-        animation: glitch-top 6s steps(1, end) 4s infinite;
+        animation: glitch-top 6s steps(1, end) 2.5s infinite;
       }
 
       .glitch::after {
         opacity: 0%;
-        animation: glitch-bottom 6s steps(1, end) 4s infinite;
+        animation: glitch-bottom 6s steps(1, end) 2.5s infinite;
       }
 
       @media (max-width: 768px) {
