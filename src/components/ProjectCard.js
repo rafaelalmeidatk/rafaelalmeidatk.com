@@ -11,7 +11,7 @@ const ProjectCard = ({ id, title, cover, link }) => {
     <a className="container" href={link}>
       {cover && (
         <div
-          className={`cover ${id === "blaze" && "blaze"}`}
+          className={`cover ${id}`}
           style={{ backgroundImage: `url(${cover})` }}
         />
       )}
@@ -72,6 +72,11 @@ const ProjectCard = ({ id, title, cover, link }) => {
 
         .blaze {
           background-position: bottom;
+        }
+
+        .twitter-fullstack-clone,
+        .discord-react-clone {
+          background-position: top center;
         }
 
         .square {
