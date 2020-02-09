@@ -15,7 +15,6 @@ const ProjectCard = ({ id, title, cover, link }) => {
           style={{ backgroundImage: `url(${cover})` }}
         />
       )}
-      <div className="square" />
       <div className={`title top top-anim-${animationNumber}`}>{title}</div>
       <div className={`title middle`} aria-hidden>
         {title}
@@ -77,16 +76,6 @@ const ProjectCard = ({ id, title, cover, link }) => {
         .twitter-fullstack-clone,
         .discord-react-clone {
           background-position: top center;
-        }
-
-        .square {
-          position: absolute;
-          transform: rotate(45deg);
-          opacity: 0;
-          width: 150px;
-          height: 150px;
-          border: 1px solid #fff;
-          transition: all 0.2s ease;
         }
 
         .title {
