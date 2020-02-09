@@ -10,7 +10,6 @@
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "bulma": "^0.8.0",
-    "gh-pages": "^2.2.0",
     "next": "9.1.4",
     "node-sass": "^4.13.0",
     "react": "16.12.0",
