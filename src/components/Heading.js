@@ -3,8 +3,11 @@ import React from "react";
 const Content = () => (
   <>
     <h1>
-      Hi! I am <span className="highlight">Rafael Almeida</span>, and I try to
-      not break the web
+      Hi! I am Rafael Almeida, and I try to not{" "}
+      <span className="glitch" data-text="break">
+        break
+      </span>{" "}
+      the web
     </h1>
 
     <p>
@@ -33,20 +36,120 @@ const Content = () => (
         font-weight: 300;
         letter-spacing: -0.06em;
       }
+
+      .glitch {
+        position: relative;
+        display: inline-block;
+        animation: glitch 6s steps(1, end) 4s infinite;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .glitch::before {
+        opacity: 0%;
+        animation: glitch-top 6s steps(1, end) 4s infinite;
+      }
+
+      .glitch::after {
+        opacity: 0%;
+        animation: glitch-bottom 6s steps(1, end) 4s infinite;
+      }
+
+      @keyframes glitch {
+        0% {
+          opacity: 100%;
+        }
+        1% {
+          opacity: 0%;
+        }
+        2% {
+          opacity: 100%;
+          clip-path: inset(0 40% 0 0);
+          transform: skewX(30deg);
+        }
+        3% {
+          clip-path: inset(0 0 0 0);
+          opacity: 0%;
+        }
+        4% {
+          opacity: 100%;
+          transform: skewX(0deg);
+        }
+        5%,
+        100% {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      @keyframes glitch-top {
+        0% {
+          top: -6px;
+          left: 10px;
+          clip-path: inset(0 0 60% 0);
+          opacity: 100%;
+        }
+        1% {
+          top: -6px;
+          left: 4px;
+        }
+        2% {
+          top: -4px;
+          left: -4px;
+        }
+        3% {
+          top: -6px;
+          left: 4px;
+        }
+        4%,
+        100% {
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+      }
+
+      @keyframes glitch-bottom {
+        0% {
+          right: 10px;
+          clip-path: inset(70% 0 0 0);
+          opacity: 100%;
+        }
+        1% {
+          left: 4px;
+          bottom: -4px;
+          clip-path: inset(50% 0 0 0);
+        }
+        2% {
+          left: 6px;
+          bottom: -3px;
+          clip-path: inset(70% 0 0 0);
+        }
+        3% {
+          right: 6px;
+          bottom: -3px;
+        }
+        4%,
+        100% {
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+      }
     `}</style>
   </>
 );
 
 const Heading = () => (
   <section className="heading">
-    <div className="container">
-      <div className="hidden">
-        <Content />
-      </div>
-
-      <div className="flash-animation">
-        <Content />
-      </div>
+    <div className="container flash-animation">
+      <Content />
     </div>
 
     <style jsx>{`
@@ -55,25 +158,12 @@ const Heading = () => (
         padding: 10rem 2rem 4rem;
       }
 
-      .hidden {
-        visibility: hidden;
-        opacity: 0;
-      }
-
-      .heading .container {
+      .container {
         position: relative;
+        animation: glitch 0.7s steps(1, end);
       }
 
-      .flash-animation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        animation: heading-flash 0.7s steps(1, end);
-      }
-
-      @keyframes heading-flash {
+      @keyframes glitch {
         0% {
           clip-path: inset(0 70% 0 0);
           background: #fff;
