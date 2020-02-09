@@ -12,7 +12,13 @@ const ProjectCard = ({ title, cover, link }) => {
       <div className="cover" style={{ backgroundImage: `url(${cover})` }} />
       <div className="square" />
       <div className={`title top top-anim-${animationNumber}`}>{title}</div>
-      <div className={`title bottom bottom-anim-${animationNumber}`}>
+      <div className={`title middle`} aria-hidden>
+        {title}
+      </div>
+      <div
+        className={`title bottom bottom-anim-${animationNumber}`}
+        aria-hidden
+      >
         {title}
       </div>
 
@@ -78,6 +84,16 @@ const ProjectCard = ({ title, cover, link }) => {
 
           opacity: 0%;
           animation: glitch-text 0.4s steps(1, end) 1.4s forwards;
+        }
+
+        .middle {
+          opacity: 100%;
+          clip-path: inset(49% 0% 48% 0);
+        }
+
+        .container:hover .middle,
+        .container:focus .middle {
+          opacity: 0;
         }
 
         .top {
