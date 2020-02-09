@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "deploy": "yarn export && gh-pages -d out"
+    "start": "next start"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
