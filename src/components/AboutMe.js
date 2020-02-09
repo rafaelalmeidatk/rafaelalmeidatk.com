@@ -105,7 +105,7 @@ const AboutMe = () => (
 
       .key {
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 700;
         font-family: monospace;
         letter-spacing: 0.02em;
       }

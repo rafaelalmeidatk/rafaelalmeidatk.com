@@ -32,7 +32,7 @@ const Content = () => (
     <style jsx>{`
       h1 {
         font-size: 4.5em;
-        font-weight: 740;
+        font-weight: 800;
         line-height: 1.15em;
         letter-spacing: -0.025em;
       }
