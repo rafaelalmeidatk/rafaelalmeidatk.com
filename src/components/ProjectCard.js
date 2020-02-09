@@ -71,7 +71,7 @@ const ProjectCard = ({ id, title, cover, link }) => {
         }
 
         .blaze {
-          background-position: 0 -443px;
+          background-position: bottom;
         }
 
         .square {

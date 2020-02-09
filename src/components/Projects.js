@@ -53,8 +53,7 @@ const projects = [
   },
   {
     id: "blaze",
-    cover:
-      "https://camo.githubusercontent.com/a353597c00768050d2fa60283934a0e65842c8c3/68747470733a2f2f696d672e697463682e7a6f6e652f6157316e4c7a45774e6a6b344f444d755a326c6d2f6f726967696e616c2f4836373137412e676966",
+    cover: "https://i.imgur.com/Qd24Xp6.gif",
     title: "Blaze Strike",
     link: "https://github.com/Phantom-Ignition/MonoGameJam1"
   },
