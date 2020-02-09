@@ -40,6 +40,7 @@ const AboutMe = () => (
 
     <style jsx>{`
       .about-me {
+        padding: 0 1rem;
         margin-top: 3em;
         margin-bottom: 4em;
         height: 180px;

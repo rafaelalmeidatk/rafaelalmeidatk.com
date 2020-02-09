@@ -7,10 +7,6 @@ import Projects from "../components/Projects";
 
 const Home = () => (
   <>
-    <Head>
-      <title>Rafael Almeida</title>
-    </Head>
-
     <Noise />
 
     <Heading />

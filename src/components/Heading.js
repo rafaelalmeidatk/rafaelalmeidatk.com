@@ -62,6 +62,12 @@ const Content = () => (
         animation: glitch-bottom 6s steps(1, end) 4s infinite;
       }
 
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5em;
+        }
+      }
+
       @keyframes glitch {
         0% {
           opacity: 100%;
@@ -161,6 +167,12 @@ const Heading = () => (
       .container {
         position: relative;
         animation: glitch 0.7s steps(1, end);
+      }
+
+      @media (max-width: 768px) {
+        .heading {
+          padding: 3rem 1rem 0;
+        }
       }
 
       @keyframes glitch {

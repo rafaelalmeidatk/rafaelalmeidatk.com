@@ -76,7 +76,8 @@ const Projects = () => (
 
     <style jsx>{`
       .projects {
-        margin-top: 96px;
+        margin-top: 6rem;
+        padding: 0 2rem;
       }
 
       h2 {
@@ -103,12 +104,26 @@ const Projects = () => (
       }
 
       .columns {
+        width: 100%;
         flex-wrap: wrap;
       }
 
       .columnn {
         margin: 24px 14px;
         width: calc(50% - 28px);
+      }
+
+      @media (max-width: 890px) {
+        .columnn {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .projects {
+          margin-top: 0;
+          padding: 0 1rem;
+        }
       }
 
       @keyframes glitch {
