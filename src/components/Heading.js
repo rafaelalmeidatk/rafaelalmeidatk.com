@@ -40,7 +40,7 @@ const Content = () => (
       .glitch {
         position: relative;
         display: inline-block;
-        animation: glitch 6s steps(1, end) 4s infinite;
+        animation: glitch 6s steps(1, end) 2.5s infinite;
       }
 
       .glitch::before,
