@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectCard = ({ id, title, cover, link }) => {
+type ProjectCardProps = {
+  id: string;
+  title: string;
+  cover: string;
+  link: string;
+};
+
+const ProjectCard = ({ id, title, cover, link }: ProjectCardProps) => {
   const [showCover, setShowCover] = useState(false);
   const [animationNumber, setAnimationNumber] = useState(1);
 
