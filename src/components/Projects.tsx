@@ -165,7 +165,6 @@ const Projects = () => (
 
         100% {
           opacity: 100%;
-          background: #121212;
         }
       }
     `}</style>
