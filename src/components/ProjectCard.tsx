@@ -48,7 +48,7 @@ const ProjectCard = ({ id, title, cover, link }: ProjectCardProps) => {
           overflow: hidden;
 
           opacity: 0%;
-          animation: glitch 0.2s steps(1, end) 1.4s forwards;
+          animation: glitch 0.2s steps(1, end) 1.2s forwards;
         }
 
         .container:hover {

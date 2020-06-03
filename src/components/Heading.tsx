@@ -51,7 +51,7 @@ const Content = () => (
       .glitch {
         position: relative;
         display: inline-block;
-        animation: glitch 6s steps(1, end) 2.5s infinite;
+        animation: glitch 5s steps(1, end) 2.5s infinite;
       }
 
       .glitch::before,
@@ -177,7 +177,7 @@ const Heading = () => (
 
       .container {
         position: relative;
-        animation: glitch 0.7s steps(1, end);
+        animation: glitch 0.45s steps(1, end);
       }
 
       @media (max-width: 768px) {

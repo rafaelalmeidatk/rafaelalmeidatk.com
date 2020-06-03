@@ -57,11 +57,11 @@ const AboutMe = () => (
         position: relative;
         overflow: hidden;
         opacity: 0%;
-        animation: box-open 0.15s ease-out 0.8s forwards;
+        animation: box-open 0.15s ease-out 0.6s forwards;
       }
 
       .content {
-        animation: box-open-content 0.15s ease-out 0.8s;
+        animation: box-open-content 0.15s ease-out 0.6s;
       }
 
       .box-border {
