@@ -1,33 +1,14 @@
-import React from "react";
+import React from 'react';
 
 const Content = () => (
   <>
     <h1>
-      Hi! I am Rafael Almeida, and I try to not{" "}
+      Hi! I am Rafael Almeida, and I try to not{' '}
       <span className="glitch" data-text="break">
         break
-      </span>{" "}
+      </span>{' '}
       the web
     </h1>
-
-    <p>
-      I am mostly working with bleeding edge technologies,{" "}
-      <a
-        href="https://github.com/rafaelalmeidatk/TIL/issues"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        always learning something new
-      </a>
-      .
-    </p>
-    <p>
-      Currently building awesome stuff at{" "}
-      <a href="https://d3.do/" rel="noopener noreferrer" target="_blank">
-        D3
-      </a>
-      .
-    </p>
 
     <style jsx>{`
       h1 {
@@ -172,7 +153,7 @@ const Heading = () => (
     <style jsx>{`
       .heading {
         position: relative;
-        padding: 9rem 2rem 4rem;
+        padding: 9rem 2rem 2rem;
       }
 
       .container {
