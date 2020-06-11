@@ -1,5 +1,7 @@
 import React from 'react';
 import { useGlobalDelay } from './GlobalDelayContext';
+import { LabelledByProvider, useLabelledBy } from './LabelledByContext';
+import VisuallyHidden from './VisuallyHidden';
 
 const MS_PER_LETTER = 7;
 
@@ -11,6 +13,7 @@ type TerminalLineProps = {
 
 const TerminalLetter = ({ children, delay = MS_PER_LETTER }: any) => {
   const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
+  const labelledBy = useLabelledBy();
 
   const globalCssDelay = getCurrentCssDelay();
   registerAnimation(delay);
@@ -19,6 +22,7 @@ const TerminalLetter = ({ children, delay = MS_PER_LETTER }: any) => {
     <span
       className={`terminal-letter`}
       style={{ animationDelay: globalCssDelay }}
+      aria-labelledby={labelledBy}
     >
       {children}
     </span>
@@ -26,6 +30,8 @@ const TerminalLetter = ({ children, delay = MS_PER_LETTER }: any) => {
 };
 
 const TerminalLine = ({ children, href, delay }: TerminalLineProps) => {
+  const labelledBy = useLabelledBy();
+
   const foo = Array.isArray(children) ? children.join('') : children;
   const letters = foo.split('');
 
@@ -39,13 +45,18 @@ const TerminalLine = ({ children, href, delay }: TerminalLineProps) => {
 
   if (href) {
     return (
-      <a href={href} rel="noopener noreferrer" target="_blank">
+      <a
+        href={href}
+        rel="noopener noreferrer"
+        target="_blank"
+        aria-labelledby={labelledBy}
+      >
         {elements}
       </a>
     );
   }
 
-  return <span>{elements}</span>;
+  return <span aria-labelledby={labelledBy}>{elements}</span>;
 };
 
 const JsonKey = (props: any) => {
@@ -71,8 +82,30 @@ const JsonLinkValue = ({ href, children }: any) => (
   <JsonStringValue href={href || children}>{children}</JsonStringValue>
 );
 
-const JsonLine = ({ hasIndentation = true, children }: any) => {
-  return <div className={hasIndentation && 'indentation'}>{children}</div>;
+const JsonLine = ({
+  hasIndentation = true,
+  labelledBy = '',
+  children,
+}: any) => {
+  const ariaProp = labelledBy
+    ? { 'aria-labelledby': labelledBy }
+    : { 'aria-hidden': true };
+
+  return (
+    <LabelledByProvider labelledBy={labelledBy}>
+      <div className={hasIndentation && 'indentation'} {...ariaProp}>
+        {children}
+      </div>
+    </LabelledByProvider>
+  );
+};
+
+const AssistiveText = ({ children, ...props }: any) => {
+  return (
+    <VisuallyHidden {...props}>
+      <p role="text">{children}</p>
+    </VisuallyHidden>
+  );
 };
 
 const Json = () => {
@@ -82,21 +115,29 @@ const Json = () => {
         <TerminalLine>{'{'}</TerminalLine>
       </JsonLine>
 
-      <JsonLine>
+      <JsonLine labelledBy="github-desc">
+        <AssistiveText id="github-desc">
+          Github username: rafaelalmeidatk
+        </AssistiveText>
+
         <JsonKey text="github" />
         <JsonLinkValue href="https://github.com/rafaelalmeidatk">
           github.com/rafaelalmeidatk
         </JsonLinkValue>
       </JsonLine>
 
-      <JsonLine>
+      <JsonLine labelledBy="work-desc">
+        <AssistiveText id="work-desc">Currently working at D3</AssistiveText>
+
         <JsonKey text="work" />
         <TerminalLine>{'"Software Developer @ '}</TerminalLine>
         <TerminalLine href="https://d3.do">{'D3'}</TerminalLine>
         <TerminalLine>{'",'}</TerminalLine>
       </JsonLine>
 
-      <JsonLine>
+      <JsonLine labelledBy="blog-desc">
+        <AssistiveText id="blog-desc">Blog not available yet</AssistiveText>
+
         <JsonKey text="blog" />
         <JsonValue value="null" hasComma={false} />
       </JsonLine>
@@ -125,7 +166,7 @@ const TerminalAboutMe = () => {
   return (
     <section className="about-me">
       <div className="box container">
-        <div className="input">
+        <div className="input" aria-hidden>
           <span className="domain">rafael@pc</span>:~${' '}
           <TerminalLine delay={inputTextDelay}>{inputText}</TerminalLine>
           <span
@@ -170,6 +211,7 @@ const TerminalAboutMe = () => {
 
         .input {
           margin-bottom: 0.2rem;
+          pointer-events: none;
         }
 
         .domain {
