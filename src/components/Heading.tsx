@@ -1,4 +1,7 @@
 import React from 'react';
+import { useGlobalDelay } from './GlobalDelayContext';
+
+const HEADING_ANIMATION_DURAITON = 450;
 
 const Content = () => (
   <>
@@ -144,94 +147,101 @@ const Content = () => (
   </>
 );
 
-const Heading = () => (
-  <section className="heading">
-    <div className="container flash-animation">
-      <Content />
-    </div>
+const Heading = () => {
+  const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
+  const globalCssDelay = getCurrentCssDelay();
+  registerAnimation(HEADING_ANIMATION_DURAITON);
 
-    <style jsx>{`
-      .heading {
-        position: relative;
-        padding: 9rem 2rem 2rem;
-      }
+  return (
+    <section className="heading">
+      <div className="container flash-animation">
+        <Content />
+      </div>
 
-      .container {
-        position: relative;
-        animation: glitch 0.45s steps(1, end);
-      }
-
-      @media (max-width: 768px) {
+      <style jsx>{`
         .heading {
-          padding: 3rem 1rem 0;
-        }
-      }
-
-      @keyframes glitch {
-        0% {
-          clip-path: inset(0 70% 0 0);
-          background: #fff;
-          opacity: 100%;
+          position: relative;
+          padding: 9rem 2rem 2rem;
         }
 
-        10% {
-          opacity: 0%;
+        .container {
+          position: relative;
+          animation: glitch ${HEADING_ANIMATION_DURAITON}ms steps(1, end)
+            ${globalCssDelay};
         }
 
-        15% {
-          opacity: 100%;
+        @media (max-width: 768px) {
+          .heading {
+            padding: 3rem 1rem 0;
+          }
         }
 
-        20% {
-          opacity: 0%;
-        }
+        @keyframes glitch {
+          0% {
+            clip-path: inset(0 70% 0 0);
+            background: #fff;
+            opacity: 100%;
+          }
 
-        25% {
-          opacity: 100%;
-        }
+          10% {
+            opacity: 0%;
+          }
 
-        30% {
-          opacity: 0%;
-        }
+          15% {
+            opacity: 100%;
+          }
 
-        45% {
-          opacity: 100%;
-        }
+          20% {
+            opacity: 0%;
+          }
 
-        50% {
-          clip-path: inset(0 0% 0 0);
-        }
+          25% {
+            opacity: 100%;
+          }
 
-        55% {
-          clip-path: inset(0 40% 0 0);
-        }
+          30% {
+            opacity: 0%;
+          }
 
-        65% {
-          opacity: 0%;
-        }
+          45% {
+            opacity: 100%;
+          }
 
-        70% {
-          opacity: 100%;
-        }
+          50% {
+            clip-path: inset(0 0% 0 0);
+          }
 
-        75% {
-          clip-path: inset(0 0% 0 0);
-        }
+          55% {
+            clip-path: inset(0 40% 0 0);
+          }
 
-        80% {
-          opacity: 0%;
-        }
+          65% {
+            opacity: 0%;
+          }
 
-        85% {
-          opacity: 100%;
-        }
+          70% {
+            opacity: 100%;
+          }
 
-        100% {
-          background: #121212;
+          75% {
+            clip-path: inset(0 0% 0 0);
+          }
+
+          80% {
+            opacity: 0%;
+          }
+
+          85% {
+            opacity: 100%;
+          }
+
+          100% {
+            background: #121212;
+          }
         }
-      }
-    `}</style>
-  </section>
-);
+      `}</style>
+    </section>
+  );
+};
 
 export default Heading;

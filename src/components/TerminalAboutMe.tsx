@@ -1,8 +1,7 @@
-import React, { createContext, useContext } from 'react';
+import React from 'react';
+import { useGlobalDelay } from './GlobalDelayContext';
 
 const MS_PER_LETTER = 8;
-
-const TerminalLineContext = createContext<any>({ getCounterPosition: () => 0 });
 
 type TerminalLineProps = {
   children: string | string[];
@@ -11,13 +10,15 @@ type TerminalLineProps = {
 };
 
 const TerminalLetter = ({ children, delay = MS_PER_LETTER }: any) => {
-  const { getCounterPosition } = useContext(TerminalLineContext);
-  const counter = getCounterPosition(delay);
+  const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
+
+  const globalCssDelay = getCurrentCssDelay();
+  registerAnimation(delay);
 
   return (
     <span
       className={`terminal-letter`}
-      style={{ animationDelay: counter + 'ms' }}
+      style={{ animationDelay: globalCssDelay }}
     >
       {children}
     </span>
@@ -112,14 +113,12 @@ const Json = () => {
   );
 };
 
-const TerminalAboutMe = () => {
-  const countRef = React.useRef<number>(0);
+const TERMINAL_OPEN_DURATION = 150;
 
-  const getCounterPosition = (delay: number) => {
-    const position = countRef.current;
-    countRef.current += delay;
-    return position;
-  };
+const TerminalAboutMe = () => {
+  const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
+  const globalCssDelay = getCurrentCssDelay();
+  registerAnimation(TERMINAL_OPEN_DURATION, 200);
 
   const inputText = `cat data.json`;
   const inputTextDelay = 30;
@@ -128,20 +127,18 @@ const TerminalAboutMe = () => {
   return (
     <section className="about-me container">
       <div className="box">
-        <TerminalLineContext.Provider value={{ getCounterPosition }}>
-          <div className="input">
-            <span className="domain">rafael@pc</span>:~${' '}
-            <TerminalLine delay={inputTextDelay}>{inputText}</TerminalLine>
-            <span
-              className="square"
-              style={{ animationDelay: `${hideCursorDelay}ms` }}
-            />
-          </div>
+        <div className="input">
+          <span className="domain">rafael@pc</span>:~${' '}
+          <TerminalLine delay={inputTextDelay}>{inputText}</TerminalLine>
+          <span
+            className="square"
+            style={{ animationDelay: `${hideCursorDelay}ms` }}
+          />
+        </div>
 
-          <div className="json">
-            <Json />
-          </div>
-        </TerminalLineContext.Provider>
+        <div className="json">
+          <Json />
+        </div>
       </div>
 
       <style jsx global>{`
@@ -156,7 +153,8 @@ const TerminalAboutMe = () => {
           position: relative;
           overflow: hidden;
           opacity: 0%;
-          animation: box-open 0.15s steps(1, end) 0.6s forwards;
+          animation: box-open ${TERMINAL_OPEN_DURATION}ms steps(1, end)
+            ${globalCssDelay} forwards;
         }
 
         .input {

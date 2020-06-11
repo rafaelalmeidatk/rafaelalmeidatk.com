@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 type ProjectCardProps = {
   id: string;
   title: string;
   cover: string;
   link: string;
+  animationDelayCss: string;
 };
 
-const ProjectCard = ({ id, title, cover, link }: ProjectCardProps) => {
+export const PROJECT_CARD_ANIMATION_DURATION = 200;
+
+const ProjectCard = ({
+  id,
+  title,
+  cover,
+  link,
+  animationDelayCss,
+}: ProjectCardProps) => {
   const [showCover, setShowCover] = useState(false);
   const [animationNumber, setAnimationNumber] = useState(1);
 
@@ -48,7 +57,8 @@ const ProjectCard = ({ id, title, cover, link }: ProjectCardProps) => {
           overflow: hidden;
 
           opacity: 0%;
-          animation: glitch 0.2s steps(1, end) 1.2s forwards;
+          animation: glitch ${PROJECT_CARD_ANIMATION_DURATION}ms steps(1, end)
+            ${animationDelayCss} forwards;
         }
 
         .container:hover {
