@@ -94,7 +94,6 @@ const Projects = () => {
 
       <style jsx>{`
         .projects {
-          margin-top: 6rem;
           padding: 0 2rem;
         }
 

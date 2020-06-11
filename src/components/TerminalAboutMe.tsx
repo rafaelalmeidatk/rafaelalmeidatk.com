@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGlobalDelay } from './GlobalDelayContext';
 
-const MS_PER_LETTER = 8;
+const MS_PER_LETTER = 7;
 
 type TerminalLineProps = {
   children: string | string[];
@@ -98,12 +98,7 @@ const Json = () => {
 
       <JsonLine>
         <JsonKey text="blog" />
-        <JsonValue value="null" />
-      </JsonLine>
-
-      <JsonLine>
-        <JsonKey text="mainLangs" />
-        <JsonValue value={'["js", "ts", "csharp"]'} />
+        <JsonValue value="null" hasComma={false} />
       </JsonLine>
 
       <JsonLine hasIndentation={false}>
@@ -120,13 +115,16 @@ const TerminalAboutMe = () => {
   const globalCssDelay = getCurrentCssDelay();
   registerAnimation(TERMINAL_OPEN_DURATION, 200);
 
-  const inputText = `cat data.json`;
+  const inputText = `cat info.json && ./render_projects`;
   const inputTextDelay = 30;
-  const hideCursorDelay = inputText.length * MS_PER_LETTER + 450;
+  const hideCursorDelay =
+    parseInt(globalCssDelay, 10) +
+    TERMINAL_OPEN_DURATION +
+    inputText.length * inputTextDelay;
 
   return (
-    <section className="about-me container">
-      <div className="box">
+    <section className="about-me">
+      <div className="box container">
         <div className="input">
           <span className="domain">rafael@pc</span>:~${' '}
           <TerminalLine delay={inputTextDelay}>{inputText}</TerminalLine>
@@ -143,7 +141,7 @@ const TerminalAboutMe = () => {
 
       <style jsx global>{`
         .about-me {
-          padding: 2rem;
+          padding: 5.5rem 2rem;
         }
 
         .box {
@@ -155,6 +153,19 @@ const TerminalAboutMe = () => {
           opacity: 0%;
           animation: box-open ${TERMINAL_OPEN_DURATION}ms steps(1, end)
             ${globalCssDelay} forwards;
+        }
+
+        @media (max-width: 768px) {
+          .about-me {
+            padding: 2rem 0;
+          }
+
+          .box {
+            border-left: 0;
+            border-right: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
         }
 
         .input {

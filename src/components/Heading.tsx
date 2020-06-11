@@ -161,7 +161,7 @@ const Heading = () => {
       <style jsx>{`
         .heading {
           position: relative;
-          padding: 9rem 2rem 2rem;
+          padding: 9rem 2rem 0;
         }
 
         .container {
