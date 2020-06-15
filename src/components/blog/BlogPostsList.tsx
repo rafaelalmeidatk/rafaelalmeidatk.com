@@ -14,8 +14,6 @@ const BlogPostsListItem = ({ slug, title, date }: BlogPostsListItemProps) => (
     <div className={styles.listItemDate}>
       {formatRawDate(date, 'MMMM d, yyyy')}
     </div>
-
-    <style jsx>{``}</style>
   </a>
 );
 

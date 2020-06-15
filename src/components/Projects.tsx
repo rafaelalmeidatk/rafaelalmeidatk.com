@@ -1,6 +1,8 @@
 import React from 'react';
+import cx from 'classnames';
 import ProjectCard, { PROJECT_CARD_ANIMATION_DURATION } from './ProjectCard';
 import { useGlobalDelay } from './GlobalDelayContext';
+import styles from './Projects.module.css';
 
 const projects = [
   {
@@ -71,15 +73,23 @@ const Projects = () => {
   registerAnimation(PROJECT_CARD_ANIMATION_DURATION);
 
   return (
-    <section className="projects">
+    <section className={styles.projects}>
       <div className="container">
-        <div className="title-wrapper">
-          <h2>Projects</h2>
+        <div className={styles.titleWrapper}>
+          <h2
+            className={styles.h2}
+            style={{
+              animationDuration: `${PROJECTS_OPEN_DURATION}ms`,
+              animationDelay: globalCssDelay,
+            }}
+          >
+            Projects
+          </h2>
         </div>
 
-        <div className="columns">
+        <div className={cx(styles.columns, 'columns')}>
           {projects.map((project) => (
-            <div key={project.id} className="columnn">
+            <div key={project.id} className={styles.column}>
               <ProjectCard
                 id={project.id}
                 title={project.title}
@@ -91,95 +101,6 @@ const Projects = () => {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .projects {
-          padding: 0 2rem;
-        }
-
-        h2 {
-          font-size: 2.6em;
-          font-weight: 700;
-          letter-spacing: 0.09em;
-          text-transform: uppercase;
-
-          opacity: 0;
-          animation: glitch ${PROJECTS_OPEN_DURATION}ms steps(1, end)
-            ${globalCssDelay} forwards;
-        }
-
-        .title-wrapper {
-          display: flex;
-          align-items: center;
-          margin-bottom: 48px;
-        }
-
-        .title-wrapper .line {
-          margin: 0 30px;
-          height: 1px;
-          background: rgba(255, 255, 255, 0.5);
-          flex: 1 1 auto;
-        }
-
-        .columns {
-          width: 100%;
-          flex-wrap: wrap;
-        }
-
-        .columnn {
-          margin: 24px 14px;
-          width: calc(50% - 28px);
-        }
-
-        @media (max-width: 890px) {
-          .columnn {
-            width: 100%;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .projects {
-            margin-top: 0;
-            padding: 0 1rem;
-          }
-        }
-
-        @keyframes glitch {
-          0% {
-            clip-path: inset(0 0% 0 0);
-            background: #fff;
-            opacity: 1;
-          }
-
-          20% {
-            opacity: 0;
-          }
-
-          40% {
-            opacity: 1;
-          }
-
-          60% {
-            clip-path: inset(30% 0 0 0);
-          }
-
-          70% {
-            opacity: 0;
-          }
-
-          80% {
-            opacity: 1;
-          }
-
-          90% {
-            opacity: 0;
-          }
-
-          100% {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,24 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
+import styles from './VisuallyHidden.module.css';
 
 type VisuallyHiddenProps = React.HTMLProps<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
-const VisuallyHidden = ({ children, ...props }: VisuallyHiddenProps) => {
-  return (
-    <div {...props}>
-      {children}
-      <style jsx>{`
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-        clip: rect(1px, 1px, 1px, 1px);
-        white-space: nowrap; /* added line */
-      `}</style>
-    </div>
-  );
-};
+const VisuallyHidden = ({
+  children,
+  className,
+  ...props
+}: VisuallyHiddenProps) => (
+  <div className={cx(styles.wrapper, className)} {...props}>
+    {children}
+  </div>
+);
 
 export default VisuallyHidden;
