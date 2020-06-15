@@ -17,7 +17,17 @@
   padding: 0.25em 0.5em 0.25em;
 }
 
+.post strong {
+  color: #fff;
+}
+
+.post blockquote {
+  padding: 0 1.5rem;
+  font-style: italic;
+}
+
 .post p,
+.post blockquote,
 .post pre {
   margin-bottom: 1.2rem;
 }

@@ -5,23 +5,50 @@ export const meta = {
   date: 1592202703964,
 };
 
+export const config = { unstable_runtimeJS: false };
+
 export default Post;
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+Axios has some issues with errors, and it is even worse on SSR since the only thing you get when accessing the page is something like this:
+
+```
+Error: Request failed with status code 500
+    at createError (/home/rafael/project/node_modules/axios/lib/core/createError.js:16:15)
+    at settle (/home/rafael/project/node_modules/axios/lib/core/settle.js:17:12)
+    at IncomingMessage.handleStreamEnd (/home/rafael/project/node_modules/axios/lib/adapters/http.js:236:11)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+```
+
+Which is not useful at all, look at this stack trace! We have no clue where the request was done, how can we fix this? We have some issues like [axios/axios#2387](https://github.com/axios/axios/issues/2387) and axios/axios#2069 but they don't have any solutions, so we need to solve this ourselves.
 
 First of all, it is very advised to have a module to abstract axios and provide functions for each operation, so I will consider you have a `get` function that is similar to this:
 
-```tsx
-<Stack space={3}>
-  <Item />
-  <Item />
-  <Item />
-</Stack>
+```js
+export const get = (endpoint, params, config) => {
+  // instance here is the return of axios.create
+  return instance.get(endpoint, { params, ...config });
+};
 ```
 
-Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae. Id aliquet risus feugiat in ante metus dictum
+My first attempt was this:
 
-```jsx
+```js
+export const get = (endpoint, params, config) => {
+  return instance.get(endpoint, { params, ...config }).catch((error) => {
+    throw new Error('hello!');
+  });
+};
+```
+
+But turns out even my error can't maintain the stack trace, this is happening because the function is called asynchronously, so the old stack trace is already lost. The trick here is to maintain the old stack trace before throwing the error, and I learned something:
+
+> The stack trace isn't something special, it is just a string.
+
+Since it is _just a string_, we can **store it** before doing the request, and assign it to the error before throwing it:
+
+```js
 export const get = (endpoint, params, config) => {
   const { stack } = new Error();
 
@@ -32,8 +59,49 @@ export const get = (endpoint, params, config) => {
 };
 ```
 
-Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae. Id aliquet risus feugiat in ante metus dictum at tempor. Sed blandit libero volutpat sed cras. Sed odio morbi quis commodo odio aenean sed adipiscing. Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in. Nibh cras pulvinar mattis nunc sed. Luctus accumsan tortor posuere ac ut consequat semper viverra. Fringilla ut morbi tincidunt augue interdum velit euismod.
+And now our error contains the old stack trace, so we know exactly where the code has been called! To improve the current code we can move our catch function to somewhere else and output the response body in the error message, this is the full code:
 
-## Lorem Ipsum
+```js
+export const axiosCatch = (stackTrace) => (error) => {
+  let errorMessage = error.message;
 
-Tristique senectus et netus et malesuada fames ac turpis. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel. In mollis nunc sed id semper. Egestas tellus rutrum tellus pellentesque. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Quis blandit turpis cursus in hac habitasse platea dictumst quisque. Eros donec ac odio tempor orci dapibus ultrices. Aliquam sem et tortor consequat id porta nibh. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla. Diam vulputate ut pharetra sit amet. Ut tellus elementum sagittis vitae et leo. Arcu non odio euismod lacinia at quis risus sed vulputate.
+  if (error.response) {
+    const responseBody = JSON.stringify(error.response.data, null, 2);
+    errorMessage = `Request failed with status code ${error.response.status}\n`;
+    errorMessage += `Response body: ${responseBody}`;
+  }
+
+  error.message = errorMessage;
+  error.stack = stackTrace;
+
+  throw error;
+};
+```
+
+And to use it:
+
+```js
+export const get = (endpoint, params, config) => {
+  const stackTrace = getStackTrace();
+
+  return instance
+    .get(endpoint, { params, ...config })
+    .catch(axiosCatch(stackTrace));
+};
+```
+
+I also moved the stack trace code into another function to repeat it in the other methods and I am manipulating it to remove the `getStackTrace` function from the stack trace, you can tweak it as you like:
+
+```js
+const getStackTrace = () => {
+  const { stack } = new Error();
+  let split = stack.split('\n');
+
+  // Remove the above "new Error" line from the stack trace
+  if (split[1].includes('at getStackTrace')) {
+    split = [split[0], ...split.splice(2)];
+  }
+
+  return split.join('\n');
+};
+```

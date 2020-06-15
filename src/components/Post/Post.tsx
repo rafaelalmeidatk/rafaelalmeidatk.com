@@ -5,9 +5,15 @@ import BlogWrapper from '../Blog/BlogWrapper';
 import BlogHeader from '../Blog/BlogHeader';
 import PostHeader from './PostHeader';
 import CodeBlock from './CodeBlock';
+import Link from './Link';
 import styles from './Post.module.css';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 const components = {
+  a: Link,
   pre: (props: any) => <div {...props} />,
   code: CodeBlock,
 };

@@ -8,7 +8,7 @@ type CodeBlockProps = {
 };
 
 const CodeBlock = ({ children, className }: CodeBlockProps) => {
-  const language = className.replace(/language-/, '') as Language;
+  const language = className?.replace(/language-/, '') as Language;
   let code = children;
   if (code[code.length - 1] === '\n') {
     code = children.substr(0, children.length - 1); // remove the new line at the end
