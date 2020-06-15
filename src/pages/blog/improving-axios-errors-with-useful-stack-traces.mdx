@@ -50,7 +50,7 @@ But turns out even my error can't maintain the stack trace, this is happening be
 
 Since it is just a string, we can store it before doing the request, and assign it to the error before throwing it:
 
-```js {2,3-5}
+```js {2,5}
 export const get = (endpoint, params, config) => {
   const { stack } = new Error();
 
