@@ -3,7 +3,8 @@ import { useGlobalDelay } from './GlobalDelayContext';
 import { LabelledByProvider, useLabelledBy } from './LabelledByContext';
 import VisuallyHidden from './VisuallyHidden';
 
-const MS_PER_LETTER = 7;
+const INPUT_MS_PER_LETTER = 20;
+const CONTENT_MS_PER_LETTER = 5;
 
 type TerminalLineProps = {
   children: string | string[];
@@ -11,7 +12,7 @@ type TerminalLineProps = {
   delay?: number;
 };
 
-const TerminalLetter = ({ children, delay = MS_PER_LETTER }: any) => {
+const TerminalLetter = ({ children, delay = CONTENT_MS_PER_LETTER }: any) => {
   const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
   const labelledBy = useLabelledBy();
 
@@ -73,38 +74,55 @@ const JsonValue = ({
   return <TerminalLine href={isLink && value}>{value_}</TerminalLine>;
 };
 
-const JsonStringValue = ({ children, href, hasComma = true }: any) => {
-  const value = `"${children}"` + (hasComma ? ',' : '');
-  return <TerminalLine href={href}>{value}</TerminalLine>;
+type JsonStringValueProps = {
+  href?: string;
+  hasComma?: boolean;
+  children: string | string[];
 };
 
-const JsonLinkValue = ({ href, children }: any) => (
-  <JsonStringValue href={href || children}>{children}</JsonStringValue>
+const JsonStringValue = ({
+  children,
+  href,
+  hasComma = true,
+}: JsonStringValueProps) => (
+  <>
+    <TerminalLine>"</TerminalLine>
+    <TerminalLine href={href}>{children}</TerminalLine>
+    <TerminalLine>"</TerminalLine>
+    {hasComma && <TerminalLine>,</TerminalLine>}
+  </>
 );
+
+type JsonLinkValueProps = {
+  href: string;
+  children: string | string[];
+};
+
+const JsonLinkValue = ({ href, children }: JsonLinkValueProps) => (
+  <JsonStringValue href={href}>{children}</JsonStringValue>
+);
+
+type JsonLineProps = {
+  hasIndentation?: boolean;
+  labelledBy?: string;
+  children: React.ReactNode;
+};
 
 const JsonLine = ({
   hasIndentation = true,
   labelledBy = '',
   children,
-}: any) => {
+}: JsonLineProps) => {
   const ariaProp = labelledBy
     ? { 'aria-labelledby': labelledBy }
     : { 'aria-hidden': true };
 
   return (
     <LabelledByProvider labelledBy={labelledBy}>
-      <div className={hasIndentation && 'indentation'} {...ariaProp}>
+      <div className={hasIndentation ? 'indentation' : undefined} {...ariaProp}>
         {children}
       </div>
     </LabelledByProvider>
-  );
-};
-
-const AssistiveText = ({ children, ...props }: any) => {
-  return (
-    <VisuallyHidden {...props}>
-      <p role="text">{children}</p>
-    </VisuallyHidden>
   );
 };
 
@@ -116,9 +134,9 @@ const Json = () => {
       </JsonLine>
 
       <JsonLine labelledBy="github-desc">
-        <AssistiveText id="github-desc">
+        <VisuallyHidden id="github-desc">
           Github username: rafaelalmeidatk
-        </AssistiveText>
+        </VisuallyHidden>
 
         <JsonKey text="github" />
         <JsonLinkValue href="https://github.com/rafaelalmeidatk">
@@ -127,7 +145,9 @@ const Json = () => {
       </JsonLine>
 
       <JsonLine labelledBy="work-desc">
-        <AssistiveText id="work-desc">Currently working at D3</AssistiveText>
+        <VisuallyHidden id="work-desc">
+          Currently working as a Software Developer at D3
+        </VisuallyHidden>
 
         <JsonKey text="work" />
         <TerminalLine>{'"Software Developer @ '}</TerminalLine>
@@ -136,7 +156,7 @@ const Json = () => {
       </JsonLine>
 
       <JsonLine labelledBy="blog-desc">
-        <AssistiveText id="blog-desc">Blog not available yet</AssistiveText>
+        <VisuallyHidden id="blog-desc">Blog not available yet</VisuallyHidden>
 
         <JsonKey text="blog" />
         <JsonValue value="null" hasComma={false} />
@@ -157,18 +177,17 @@ const TerminalAboutMe = () => {
   registerAnimation(TERMINAL_OPEN_DURATION, 200);
 
   const inputText = `cat info.json && ./render_projects`;
-  const inputTextDelay = 30;
   const hideCursorDelay =
     parseInt(globalCssDelay, 10) +
     TERMINAL_OPEN_DURATION +
-    inputText.length * inputTextDelay;
+    inputText.length * INPUT_MS_PER_LETTER;
 
   return (
     <section className="about-me">
       <div className="box container">
         <div className="input" aria-hidden>
           <span className="domain">rafael@pc</span>:~${' '}
-          <TerminalLine delay={inputTextDelay}>{inputText}</TerminalLine>
+          <TerminalLine delay={INPUT_MS_PER_LETTER}>{inputText}</TerminalLine>
           <span
             className="square"
             style={{ animationDelay: `${hideCursorDelay}ms` }}
