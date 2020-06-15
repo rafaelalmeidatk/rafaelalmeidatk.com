@@ -45,13 +45,13 @@ const TerminalLine = ({ children, href, delay }: TerminalLineProps) => {
   });
 
   if (href) {
+    const isExternal = href.includes('//');
+    const externalProps = isExternal
+      ? { target: '_blank', rel: 'noopener noreferrer' }
+      : {};
+
     return (
-      <a
-        href={href}
-        rel="noopener noreferrer"
-        target="_blank"
-        aria-labelledby={labelledBy}
-      >
+      <a href={href} {...externalProps} aria-labelledby={labelledBy}>
         {elements}
       </a>
     );
@@ -156,10 +156,12 @@ const Json = () => {
       </JsonLine>
 
       <JsonLine labelledBy="blog-desc">
-        <VisuallyHidden id="blog-desc">Blog not available yet</VisuallyHidden>
+        <VisuallyHidden id="blog-desc">
+          Link to my blog: https://rafaelalmeidatk.com/blog
+        </VisuallyHidden>
 
         <JsonKey text="blog" />
-        <JsonValue value="null" hasComma={false} />
+        <JsonLinkValue href="/blog">rafaelalmeidatk.com/blog</JsonLinkValue>
       </JsonLine>
 
       <JsonLine hasIndentation={false}>
