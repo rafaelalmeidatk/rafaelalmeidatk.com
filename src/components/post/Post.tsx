@@ -1,8 +1,9 @@
 import React from 'react';
-import Head from 'next/head';
+import assert from 'assert';
 import { MDXProvider } from '@mdx-js/react';
 import BlogLayout from '../blog/Layout';
 import BlogHeader from '../blog/Header';
+import Seo from '../Seo';
 import PostHeader from './markdown/Heading';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
@@ -17,31 +18,36 @@ const markdownComponents = {
 type PostProps = {
   meta: {
     title: string;
+    description: string;
     date: string;
   };
   children: React.ReactNode;
 };
 
-const Post = ({ children, meta }: PostProps) => (
-  <>
-    <Head>
-      <title>{meta.title} | Rafael Almeida</title>
-    </Head>
+const Post = ({ children, meta }: PostProps) => {
+  assert(meta.title, 'The post is missing a title!');
+  assert(meta.description, 'The post is missing a description!');
+  assert(meta.date, 'The post is missing a date!');
 
-    <BlogLayout>
-      <BlogHeader isBlogPost />
+  return (
+    <>
+      <Seo title={meta.title} description={meta.description} isPost />
 
-      <main>
-        <article>
-          <PostHeader title={meta.title} time={meta.date} />
+      <BlogLayout>
+        <BlogHeader isBlogPost />
 
-          <MDXProvider components={markdownComponents}>
-            <section className={styles.post}>{children}</section>
-          </MDXProvider>
-        </article>
-      </main>
-    </BlogLayout>
-  </>
-);
+        <main>
+          <article>
+            <PostHeader title={meta.title} time={meta.date} />
+
+            <MDXProvider components={markdownComponents}>
+              <section className={styles.post}>{children}</section>
+            </MDXProvider>
+          </article>
+        </main>
+      </BlogLayout>
+    </>
+  );
+};
 
 export default Post;

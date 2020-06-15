@@ -1,11 +1,11 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import BlogHeader from '../../components/blog/Header';
 import BlogLayout from '../../components/blog/Layout';
 import BlogPostsList from '../../components/blog/BlogPostsList';
 import { Post, getAllPosts } from '../../lib/posts';
 import BlogPageTitle from '../../components/blog/PageTitle';
+import Seo from '../../components/Seo';
 
 type BlogProps = {
   posts: Post[];
@@ -13,9 +13,7 @@ type BlogProps = {
 
 const Blog = ({ posts }: BlogProps) => (
   <>
-    <Head>
-      <title>Blog | Rafael Almeida</title>
-    </Head>
+    <Seo title="Blog" description="My blog posts" />
 
     <BlogLayout>
       <BlogHeader />
