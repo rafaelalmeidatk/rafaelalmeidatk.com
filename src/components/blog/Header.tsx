@@ -1,13 +1,12 @@
 import React from 'react';
-import cx from 'classnames';
-import styles from './BlogHeader.module.css';
+import styles from './Header.module.css';
 
-type BlogHeaderProps = {
+type HeaderProps = {
   isBlogPost?: boolean;
 };
 
-const BlogHeader = ({ isBlogPost = false }: BlogHeaderProps) => (
-  <header className={cx(styles.header, 'container')}>
+const Header = ({ isBlogPost = false }: HeaderProps) => (
+  <header className={styles.header}>
     <a href="/" className={styles.name}>
       rafael almeida
     </a>
@@ -19,4 +18,4 @@ const BlogHeader = ({ isBlogPost = false }: BlogHeaderProps) => (
   </header>
 );
 
-export default BlogHeader;
+export default Header;
