@@ -1,5 +1,5 @@
 .post h2 {
-  margin: 1rem 0 0.8rem;
+  margin: 1.5rem 0 1rem;
   font-size: 1.7rem;
   font-weight: 800;
 }
@@ -7,4 +7,24 @@
 .post p {
   font-size: 1.13rem;
   line-height: 1.7;
+}
+
+.post code {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
+}
+
+.post p,
+.post pre {
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 810px) {
+  .post pre {
+    margin-left: -1.3rem;
+    margin-right: -1.3rem;
+  }
 }

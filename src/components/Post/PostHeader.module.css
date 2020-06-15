@@ -1,5 +1,5 @@
 .postHeader {
-  margin-top: 0.5rem;
+  margin: 0 0 2rem;
   text-align: center;
 }
 
@@ -9,7 +9,7 @@
 
 .time {
   display: block;
-  margin: 0.4rem 0 0.8rem;
+  margin: 0.4rem 0 0;
   font-size: 1rem;
   color: #fff;
   opacity: 0.8;
