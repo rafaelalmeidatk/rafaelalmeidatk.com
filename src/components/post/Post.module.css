@@ -1,3 +1,5 @@
+/* General */
+
 .post h2 {
   margin: 1.5rem 0 1rem;
   font-size: 1.7rem;
@@ -14,7 +16,7 @@
   color: #fff;
   font-size: 0.875em;
   font-weight: normal;
-  padding: 0.25em 0.5em 0.25em;
+  padding: 0.25em 0.35em 0.25em;
 }
 
 .post strong {
@@ -26,8 +28,29 @@
   font-style: italic;
 }
 
+/* Lists */
+
+.post ul {
+  list-style: disc;
+}
+
+.post ol,
+.post ul {
+  padding-left: 2rem;
+  font-size: 1.13rem;
+}
+
+.post ol li + li,
+.post ul li + li {
+  margin-top: 0.7rem;
+}
+
+/* Margins */
+
 .post p,
 .post blockquote,
+.post ul,
+.post ol,
 .post pre {
   margin-bottom: 1.2rem;
 }
