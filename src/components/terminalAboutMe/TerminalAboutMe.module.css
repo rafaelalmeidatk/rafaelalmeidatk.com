@@ -60,26 +60,30 @@
 
 @keyframes hide {
   0% {
-    opacity: 100%;
+    opacity: 1;
   }
   100% {
-    opacity: 0%;
+    opacity: 0;
   }
 }
 
 @keyframes box-open {
   0% {
-    opacity: 0%;
+    opacity: 0;
     background: #fff;
   }
 
-  30% {
-    opacity: 100%;
+  40% {
+    opacity: 1;
     background: #fff;
+  }
+
+  70% {
+    clip-path: inset(0 40% 0 0);
   }
 
   100% {
-    opacity: 100%;
+    opacity: 1;
     background: rgba(0, 0, 0, 0.1);
   }
 }

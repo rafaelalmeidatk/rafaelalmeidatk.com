@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGlobalDelay } from './GlobalDelayContext';
 
-const HEADING_ANIMATION_DURAITON = 450;
+const HEADING_ANIMATION_DURAITON = 500;
 
 const Content = () => (
   <>
@@ -37,12 +37,12 @@ const Content = () => (
       }
 
       .glitch::before {
-        opacity: 0%;
+        opacity: 0;
         animation: glitch-top 6s steps(1, end) 2.5s infinite;
       }
 
       .glitch::after {
-        opacity: 0%;
+        opacity: 0;
         animation: glitch-bottom 6s steps(1, end) 2.5s infinite;
       }
 
@@ -54,22 +54,22 @@ const Content = () => (
 
       @keyframes glitch {
         0% {
-          opacity: 100%;
+          opacity: 1;
         }
         1% {
-          opacity: 0%;
+          opacity: 0;
         }
         2% {
-          opacity: 100%;
+          opacity: 1;
           clip-path: inset(0 40% 0 0);
           transform: skewX(30deg);
         }
         3% {
           clip-path: inset(0 0 0 0);
-          opacity: 0%;
+          opacity: 0;
         }
         4% {
-          opacity: 100%;
+          opacity: 1;
           transform: skewX(0deg);
         }
         5%,
@@ -83,7 +83,7 @@ const Content = () => (
           top: -6px;
           left: 10px;
           clip-path: inset(0 0 60% 0);
-          opacity: 100%;
+          opacity: 1;
         }
         1% {
           top: -6px;
@@ -109,7 +109,7 @@ const Content = () => (
         0% {
           right: 10px;
           clip-path: inset(70% 0 0 0);
-          opacity: 100%;
+          opacity: 1;
         }
         1% {
           left: 4px;
@@ -139,7 +139,7 @@ const Content = () => (
 const Heading = () => {
   const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
   const globalCssDelay = getCurrentCssDelay();
-  registerAnimation(HEADING_ANIMATION_DURAITON);
+  registerAnimation(HEADING_ANIMATION_DURAITON, 100);
 
   return (
     <section className="heading">
@@ -169,31 +169,28 @@ const Heading = () => {
           0% {
             clip-path: inset(0 70% 0 0);
             background: #fff;
-            opacity: 100%;
+            opacity: 1;
           }
 
-          10% {
-            opacity: 0%;
-          }
-
+          10%,
           15% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           20% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           25% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           30% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           45% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           50% {
@@ -205,11 +202,11 @@ const Heading = () => {
           }
 
           65% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           70% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           75% {
@@ -217,11 +214,11 @@ const Heading = () => {
           }
 
           80% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           85% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           100% {
