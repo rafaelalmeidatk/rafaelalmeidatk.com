@@ -1,9 +1,10 @@
 import Post from '../../components/post/Post';
 
 export const meta = {
-  title: 'Bar',
-  description: 'bar bar bar',
-  date: '2020-05-13',
+  title: 'Improving axios errors with useful stack traces',
+  description:
+    "Axios has some issues with errors and stack traces, so let's fix it ourselves",
+  date: '2020-01-14',
 };
 
 export const config = { unstable_runtimeJS: false };
@@ -22,9 +23,9 @@ Error: Request failed with status code 500
     at process._tickCallback (internal/process/next_tick.js:63:19)
 ```
 
-Which is not useful at all, look at this stack trace! We have no clue where the request was done, how can we fix this? We have some issues like [axios/axios#2387](https://github.com/axios/axios/issues/2387) and axios/axios#2069 but they don't have any solutions, so we need to solve this ourselves.
+Which is not useful at all, look at this stack trace! We have no clue where the request was done, how can we fix this? There are issues like [axios/axios#2387](https://github.com/axios/axios/issues/2387) and [axios/axios#2069](https://github.com/axios/axios/issues/2069) but they don't have any solutions, so we need to solve this ourselves.
 
-First of all, it is very advised to have a module to abstract axios and provide functions for each operation, so I will consider you have a `get` function that is similar to this:
+First of all, it is highly recommended to have a module to abstract axios and provide functions for each operation, so I will consider you have a `get` function that is similar to this:
 
 ```js
 export const get = (endpoint, params, config) => {
@@ -47,9 +48,9 @@ But turns out even my error can't maintain the stack trace, this is happening be
 
 > The stack trace isn't something special, it is just a string.
 
-Since it is _just a string_, we can **store it** before doing the request, and assign it to the error before throwing it:
+Since it is just a string, we can store it before doing the request, and assign it to the error before throwing it:
 
-```js
+```js {2,3-5}
 export const get = (endpoint, params, config) => {
   const { stack } = new Error();
 
