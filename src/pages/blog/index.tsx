@@ -1,5 +1,6 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import BlogHeader from '../../components/blog/Header';
 import BlogLayout from '../../components/blog/Layout';
 import BlogPostsList from '../../components/blog/BlogPostsList';
@@ -12,6 +13,10 @@ type BlogProps = {
 
 const Blog = ({ posts }: BlogProps) => (
   <>
+    <Head>
+      <title>Blog | Rafael Almeida</title>
+    </Head>
+
     <BlogLayout>
       <BlogHeader />
 

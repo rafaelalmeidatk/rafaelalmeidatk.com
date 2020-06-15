@@ -102,7 +102,7 @@ const ProjectCard = ({
           text-transform: uppercase;
           font-size: 1.3em;
           letter-spacing: 0.1em;
-          font-weight: 600;
+          font-weight: 700;
 
           opacity: 0%;
           animation: glitch-text 0.4s steps(1, end) 1.4s forwards;

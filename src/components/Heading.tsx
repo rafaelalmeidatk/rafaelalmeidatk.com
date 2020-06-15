@@ -21,17 +21,6 @@ const Content = () => (
         letter-spacing: -0.025em;
       }
 
-      p {
-        margin-top: 16px;
-        font-size: 1.5em;
-        font-weight: 300;
-        letter-spacing: -0.06em;
-      }
-
-      p ~ p {
-        margin-top: 0;
-      }
-
       .glitch {
         position: relative;
         display: inline-block;
