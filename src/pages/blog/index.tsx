@@ -1,9 +1,9 @@
 import React from 'react';
-import BlogHeader from '../components/Blog/BlogHeader';
-import BlogWrapper from '../components/Blog/BlogWrapper';
-import BlogPost from '../components/Blog/BlogPost';
-import { Post, getAllPosts } from '../lib/posts';
 import { GetStaticProps } from 'next';
+import BlogHeader from '../../components/Blog/BlogHeader';
+import BlogWrapper from '../../components/Blog/BlogWrapper';
+import BlogPost from '../../components/Blog/BlogPost';
+import { Post, getAllPosts } from '../../lib/posts';
 
 type BlogProps = {
   posts: Post[];

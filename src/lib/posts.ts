@@ -1,32 +1,32 @@
 import fs from 'fs';
 import { join } from 'path';
-import matter from 'gray-matter';
 
-const postsDirectory = join(process.cwd(), 'posts');
+const postsDirectory = join(process.cwd(), 'src/pages/blog');
 
 export type Post = {
   slug: string;
   title: string;
   date: number;
-  content: string;
 };
 
 export const getAllPostsSlug = () => {
-  return fs
-    .readdirSync(postsDirectory)
-    .map((filename) => filename.replace(/\.md$/, ''));
+  return (
+    fs
+      .readdirSync(postsDirectory)
+      // ignore index file
+      .filter((filename) => filename !== 'index.tsx')
+      // remove .mdx extension from filename
+      .map((filename) => filename.replace(/\.mdx$/, ''))
+  );
 };
 
 export const getPostBySlug = (slug: string): Post => {
-  const fullPath = join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const pageModule = require(`../pages/blog/${slug}.mdx`);
 
   return {
     slug,
-    content,
-    title: data.title,
-    date: data.date,
+    title: pageModule.meta.title,
+    date: pageModule.meta.date,
   };
 };
 
