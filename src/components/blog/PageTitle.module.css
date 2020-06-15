@@ -21,33 +21,33 @@
 }
 
 .title::before {
-  opacity: 0%;
+  opacity: 0;
   animation: glitch-top 6s steps(1, end) 2s infinite;
 }
 
 .title::after {
-  opacity: 0%;
+  opacity: 0;
   animation: glitch-bottom 6s steps(1, end) 2s infinite;
 }
 
 @keyframes glitch {
   0% {
-    opacity: 100%;
+    opacity: 1;
   }
   1% {
-    opacity: 0%;
+    opacity: 0;
   }
   2% {
-    opacity: 100%;
+    opacity: 1;
     clip-path: inset(0 40% 0 0);
     transform: skewX(30deg);
   }
   3% {
     clip-path: inset(0 0 0 0);
-    opacity: 0%;
+    opacity: 0;
   }
   4% {
-    opacity: 100%;
+    opacity: 1;
     transform: skewX(0deg);
   }
   5%,
@@ -61,7 +61,7 @@
     top: -6px;
     left: -10px;
     clip-path: inset(0 0 60% 0);
-    opacity: 100%;
+    opacity: 1;
   }
   1% {
     top: -6px;
@@ -87,7 +87,7 @@
   0% {
     right: -10px;
     clip-path: inset(70% 0 0 0);
-    opacity: 100%;
+    opacity: 1;
   }
   1% {
     left: 0px;

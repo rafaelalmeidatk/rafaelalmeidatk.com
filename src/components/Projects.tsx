@@ -103,7 +103,7 @@ const Projects = () => {
           letter-spacing: 0.09em;
           text-transform: uppercase;
 
-          opacity: 0%;
+          opacity: 0;
           animation: glitch ${PROJECTS_OPEN_DURATION}ms steps(1, end)
             ${globalCssDelay} forwards;
         }
@@ -148,15 +148,15 @@ const Projects = () => {
           0% {
             clip-path: inset(0 0% 0 0);
             background: #fff;
-            opacity: 100%;
+            opacity: 1;
           }
 
           20% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           40% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           60% {
@@ -164,19 +164,19 @@ const Projects = () => {
           }
 
           70% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           80% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           90% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           100% {
-            opacity: 100%;
+            opacity: 1;
           }
         }
       `}</style>

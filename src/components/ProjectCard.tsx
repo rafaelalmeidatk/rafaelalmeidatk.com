@@ -56,7 +56,7 @@ const ProjectCard = ({
           align-items: center;
           overflow: hidden;
 
-          opacity: 0%;
+          opacity: 0;
           animation: glitch ${PROJECT_CARD_ANIMATION_DURATION}ms steps(1, end)
             ${animationDelayCss} forwards;
         }
@@ -104,12 +104,12 @@ const ProjectCard = ({
           letter-spacing: 0.1em;
           font-weight: 700;
 
-          opacity: 0%;
+          opacity: 0;
           animation: glitch-text 0.4s steps(1, end) 1.4s forwards;
         }
 
         .middle {
-          opacity: 100%;
+          opacity: 1;
           clip-path: inset(49% 0% 48% 0);
         }
 
@@ -163,25 +163,25 @@ const ProjectCard = ({
 
         @keyframes glitch {
           0% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           40% {
-            opacity: 100%;
+            opacity: 1;
           }
 
           80% {
-            opacity: 0%;
+            opacity: 0;
           }
 
           100% {
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-top-1 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(6px);
           }
 
@@ -195,13 +195,13 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-top-2 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(1px);
           }
 
@@ -215,13 +215,13 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-top-3 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(4px);
           }
 
@@ -235,13 +235,13 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-bottom-1 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(-6px);
           }
 
@@ -255,13 +255,13 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-bottom-2 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(-4px);
           }
 
@@ -275,13 +275,13 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
 
         @keyframes glitch-text-bottom-3 {
           0% {
-            opacity: 100%;
+            opacity: 1;
             transform: translateX(-2px);
           }
 
@@ -295,7 +295,7 @@ const ProjectCard = ({
 
           100% {
             transform: translate(0 0);
-            opacity: 100%;
+            opacity: 1;
           }
         }
       `}</style>
