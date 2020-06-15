@@ -1,0 +1,20 @@
+.terminalLetter {
+  will-change: opacity, width;
+  display: inline-block;
+  color: white;
+  width: 0;
+  opacity: 0;
+  animation: show 0.45s steps(1, end) forwards;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  10%,
+  100% {
+    opacity: 1;
+    width: auto;
+  }
+}

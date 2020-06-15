@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useRef } from 'react';
 
+/**
+ * This whole thing only works because we never rerender the app :P
+ */
+
 type GlobalDelayContextValue = {
   getCurrentCssDelay(): string;
   registerAnimation(duration: number, delayToNextAnimation?: number): void;
