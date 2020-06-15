@@ -1,0 +1,63 @@
+/* General */
+
+.post h2 {
+  margin: 1.5rem 0 1rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.post p {
+  font-size: 1.13rem;
+  line-height: 1.7;
+}
+
+.post code {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.35em 0.25em;
+}
+
+.post strong {
+  color: #fff;
+}
+
+.post blockquote {
+  padding: 0 1.5rem;
+  font-style: italic;
+}
+
+/* Lists */
+
+.post ul {
+  list-style: disc;
+}
+
+.post ol,
+.post ul {
+  padding-left: 2rem;
+  font-size: 1.13rem;
+}
+
+.post ol li + li,
+.post ul li + li {
+  margin-top: 0.7rem;
+}
+
+/* Margins */
+
+.post p,
+.post blockquote,
+.post ul,
+.post ol,
+.post pre {
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 810px) {
+  .post pre {
+    margin-left: -1.3rem;
+    margin-right: -1.3rem;
+  }
+}

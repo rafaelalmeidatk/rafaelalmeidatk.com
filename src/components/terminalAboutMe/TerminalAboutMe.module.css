@@ -1,0 +1,89 @@
+.wrapper {
+  padding: 5.5rem 2rem;
+}
+
+.terminal {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.02);
+  padding: 14px 28px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation-name: box-open;
+  animation-timing-function: steps(1, end);
+  animation-fill-mode: forwards;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 2rem 0;
+  }
+
+  .terminal {
+    border-left: 0;
+    border-right: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.input {
+  margin-bottom: 0.2rem;
+  pointer-events: none;
+}
+
+.domain {
+  font-weight: 700;
+}
+
+.square {
+  display: inline-block;
+  margin-left: 0.25rem;
+  margin-bottom: -0.1rem;
+  width: 9px;
+  height: 15px;
+  background: #fff;
+  animation: hide 0.1s steps(1, end) forwards;
+}
+
+.input,
+.output {
+  white-space: pre-wrap;
+  font-family: monospace;
+  position: relative;
+}
+
+.output a {
+  text-decoration: none;
+  border-bottom: 2px solid #fff;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes box-open {
+  0% {
+    opacity: 0;
+    background: #fff;
+  }
+
+  40% {
+    opacity: 1;
+    background: #fff;
+  }
+
+  70% {
+    clip-path: inset(0 40% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}

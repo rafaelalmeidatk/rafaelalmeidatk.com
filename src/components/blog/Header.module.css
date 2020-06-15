@@ -1,0 +1,16 @@
+.header {
+  padding: 2rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.allPosts {
+  font-size: 1.3rem;
+}

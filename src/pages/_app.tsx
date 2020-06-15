@@ -1,44 +1,28 @@
-import Head from "next/head";
-import { AppProps } from "next/app";
-import "../lib/bulma.scss";
+import Head from 'next/head';
+import { AppProps } from 'next/app';
+import Seo from '../components/Seo';
+import '../lib/bulma.scss';
+import '../styles/global.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Rafael Almeida</title>
-        <link rel="stylesheet" href="font/inter.css" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+          rel="stylesheet"
+        />
         <meta charSet="utf-8" />
         <meta
           key="viewport"
           name="viewport"
           content="width=device-width, initial-scale=1"
         />
-        <meta
-          name="description"
-          content="Software Developer, learning how to break stuff in different ways"
-        ></meta>
       </Head>
 
+      <Seo description="Software Developer, learning how to break stuff in different ways" />
+
       <Component {...pageProps} />
-
-      <style jsx global>{`
-        html,
-        body {
-          background: #121212;
-          color: #fff;
-          font-family: Inter, Helvetica, sans-serif !important;
-        }
-
-        a {
-          color: #fff;
-          text-decoration: underline;
-        }
-
-        a:hover {
-          color: #9e9e9e;
-        }
-      `}</style>
     </>
   );
 }
