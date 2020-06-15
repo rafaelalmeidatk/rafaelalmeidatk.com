@@ -1,9 +1,15 @@
-import { format } from 'date-fns';
+import { formatRawDate } from '../../lib/postTime';
 
-const BlogPost = ({ slug, title, date }: any) => (
+type BlogPostProps = {
+  slug: string;
+  title: string;
+  date: string;
+};
+
+const BlogPost = ({ slug, title, date }: BlogPostProps) => (
   <a className="blog-post" href={`/blog/${slug}`}>
     <div className="title">{title}</div>
-    <div className="date">{format(date, 'MMMM d, yyyy')}</div>
+    <div className="date">{formatRawDate(date, 'MMMM d, yyyy')}</div>
 
     <style jsx>{`
       .blog-post {

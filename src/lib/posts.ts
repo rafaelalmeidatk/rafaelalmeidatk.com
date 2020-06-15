@@ -6,7 +6,7 @@ const postsDirectory = join(process.cwd(), 'src/pages/blog');
 export type Post = {
   slug: string;
   title: string;
-  date: number;
+  date: string;
 };
 
 export const getAllPostsSlug = () => {

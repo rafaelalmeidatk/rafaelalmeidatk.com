@@ -21,7 +21,7 @@ const components = {
 type PostProps = {
   meta: {
     title: string;
-    date: number;
+    date: string;
   };
   children: React.ReactNode;
 };
