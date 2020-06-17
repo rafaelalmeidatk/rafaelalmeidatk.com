@@ -13,3 +13,13 @@ a {
 a:hover {
   color: #9e9e9e;
 }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-delay: 0s !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
