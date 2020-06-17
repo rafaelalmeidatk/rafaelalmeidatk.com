@@ -25,7 +25,7 @@ const TerminalAboutMe = () => {
         }}
       >
         <div className={styles.input} aria-hidden>
-          <span className={styles.domain}>rafael@pc</span>:~${' '}
+          <span className={styles.domain}>user@pc</span>:~${' '}
           <TerminalWord delay={INPUT_MS_PER_LETTER}>{inputText}</TerminalWord>
           <span
             className={styles.square}
