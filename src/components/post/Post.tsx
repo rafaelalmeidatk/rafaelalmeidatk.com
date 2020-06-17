@@ -3,11 +3,13 @@ import assert from 'assert';
 import { MDXProvider } from '@mdx-js/react';
 import BlogLayout from '../blog/Layout';
 import BlogHeader from '../blog/Header';
+import BlogContent from '../blog/Content';
 import Seo from '../Seo';
 import PostHeader from './markdown/Heading';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
 import styles from './Post.module.css';
+import Footer from '../Footer';
 
 const markdownComponents = {
   a: Link,
@@ -36,7 +38,7 @@ const Post = ({ children, meta }: PostProps) => {
       <BlogLayout>
         <BlogHeader isBlogPost />
 
-        <main>
+        <BlogContent>
           <article>
             <PostHeader title={meta.title} time={meta.date} />
 
@@ -44,7 +46,9 @@ const Post = ({ children, meta }: PostProps) => {
               <section className={styles.post}>{children}</section>
             </MDXProvider>
           </article>
-        </main>
+        </BlogContent>
+
+        <Footer />
       </BlogLayout>
     </>
   );

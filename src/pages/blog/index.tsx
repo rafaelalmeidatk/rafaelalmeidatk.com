@@ -2,10 +2,12 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import BlogHeader from '../../components/blog/Header';
 import BlogLayout from '../../components/blog/Layout';
+import BlogPageTitle from '../../components/blog/PageTitle';
+import BlogContent from '../../components/blog/Content';
 import BlogPostsList from '../../components/blog/BlogPostsList';
 import { Post, getAllPosts } from '../../lib/posts';
-import BlogPageTitle from '../../components/blog/PageTitle';
 import Seo from '../../components/Seo';
+import Footer from '../../components/Footer';
 
 type BlogProps = {
   posts: Post[];
@@ -18,11 +20,13 @@ const Blog = ({ posts }: BlogProps) => (
     <BlogLayout>
       <BlogHeader />
 
-      <main>
+      <BlogContent>
         <BlogPageTitle />
 
         <BlogPostsList posts={posts} />
-      </main>
+      </BlogContent>
+
+      <Footer />
     </BlogLayout>
   </>
 );

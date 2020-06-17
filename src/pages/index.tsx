@@ -1,8 +1,9 @@
 import React from 'react';
+import { GlobalDelayProvider } from '../components/GlobalDelayContext';
 import Heading from '../components/Heading';
 import TerminalAboutMe from '../components/terminalAboutMe/TerminalAboutMe';
 import Projects from '../components/Projects';
-import { GlobalDelayProvider } from '../components/GlobalDelayContext';
+import Footer from '../components/Footer';
 
 export const config = {
   unstable_runtimeJS: false,
@@ -13,6 +14,8 @@ const Home = () => (
     <Heading />
     <TerminalAboutMe />
     <Projects />
+
+    <Footer showAnimation />
   </GlobalDelayProvider>
 );
 
