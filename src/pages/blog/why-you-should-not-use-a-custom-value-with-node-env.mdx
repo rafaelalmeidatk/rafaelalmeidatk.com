@@ -1,0 +1,67 @@
+import Post from '../../components/post/Post';
+
+export const meta = {
+  title: 'Why you should not use a custom value with NODE_ENV',
+  description:
+    'It is common to have multiple stages when deploying an app, but it is not a good idea to use NODE_ENV to switch between them.',
+  date: '2020-06-17',
+};
+
+export const config = { unstable_runtimeJS: false };
+
+export default Post;
+
+It is common to have multiple stages when deploying an app: development, staging, QA, production, etc. Depending on which stage the app is running, you may need to tweak some settings, hide an interface, enable some features, and so on. How can we know what is the stage our app is running?
+
+One of the first environment variables you learn with Node.js is the `NODE_ENV` variable, this variable can receive three values: `development`, `test` and `production`. It indicates what is the environment the app is running, and can be utilized to conditionally run code:
+
+```js
+if (process.env.NODE_ENV === 'development') {
+  // set debug level logs only in development
+  logger.setLevel('debug');
+}
+```
+
+So looks like this is the perfect variable to use! Instead of only the three default values, we can also use the `staging` or `qa` for our other deploy stages, right? Well, no.
+
+This variable is utilized by a lot of tools to change their behavior:
+
+- When `NODE_ENV` is set to `development`, some tools may load additional code to show useful warnings, enable hot reloading and skip optimizations that are not necessary when you are developing the app.
+
+- When the value is set to `test`, you may want to instrument your code for code coverage.
+
+- When the value is set to `production`, some tools may optimize code paths, remove not utilized code, and perform optimizations where necessary.
+
+## The problem
+
+One of the objectives of the staging and QA environments is to be as close as possible from our production environment, but if we change the `NODE_ENV` value to be something different than `production`, then they will have completely different behaviors, uh oh!
+
+For example, some package manager tools, like `npm`, _will completely skip_ the installation of `devDependencies` when `NODE_ENV` is set to `production`. So if someone installs a package by accident in the wrong place, the app may be working perfectly in the staging environment but fail to build in production.
+
+Since some tools will only perform optimizations when `NODE_ENV` is set to `production`, performance tests may have poor results in the staging environment but suddenly be amazing at production.
+
+We do want production optimizations in our staging environments!
+
+## So, how to solve it?
+
+The answer is simple: use a different environment variable. It will be exclusively utilized by your app and can have any name, like `DEPLOY_STAGE` or `APP_ENV`. This value has to be changed depending on the deploy stage of the app, and will be combined with `NODE_ENV`:
+
+```bash
+# local development
+DEPLOY_STAGE=development
+NODE_ENV=development
+
+# development deploy
+DEPLOY_STAGE=development
+NODE_ENV=production
+
+# staging deploy
+DEPLOY_STAGE=staging
+NODE_ENV=production
+
+# production deploy
+DEPLOY_STAGE=production
+NODE_ENV=production
+```
+
+Now you can have all the benefits of `NODE_ENV=production` and still load different configurations or switch features depending on the deploy stage!
