@@ -11,7 +11,7 @@ export const config = { unstable_runtimeJS: false };
 
 export default Post;
 
-It is common to have multiple stages when deploying an app: development, staging, QA, production, etc. Depending on which stage the app is running, you may need to tweak some settings, hide an interface, enable some features, and so on. How can we know what is the stage our app is running?
+It is common to have multiple stages when deploying an app: development, staging, QA, production, etc. Depending on which stage the app is running, you may need to tweak some settings, hide an interface, enable some features, and so on. How can we know what stage our app is running in?
 
 One of the first environment variables you learn with Node.js is the `NODE_ENV` variable, this variable can receive three values: `development`, `test` and `production`. It indicates what is the environment the app is running, and can be utilized to conditionally run code:
 
@@ -31,6 +31,8 @@ This variable is utilized by a lot of tools to change their behavior:
 - When the value is set to `test`, you may want to instrument your code for code coverage.
 
 - When the value is set to `production`, some tools may optimize code paths, remove not utilized code, and perform optimizations where necessary.
+
+Depending on the tool, it might not even work properly if the value is not one of those.
 
 ## The problem
 
