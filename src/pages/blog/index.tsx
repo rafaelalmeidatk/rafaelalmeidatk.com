@@ -9,6 +9,10 @@ import { Post, getAllPosts } from '../../lib/posts';
 import Seo from '../../components/Seo';
 import Footer from '../../components/Footer';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 type BlogProps = {
   posts: Post[];
 };
