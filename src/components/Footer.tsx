@@ -37,7 +37,7 @@ const Footer = ({ showAnimation = false }: FooterProps) => {
         🚀
       </p>
 
-      <p>Fun fact: this page doesn't use any JS besides the GA script</p>
+      <p>Fun fact: this page doesn't have any JS bundle</p>
       <p>
         <a
           href="https://github.com/rafaelalmeidatk/rafaelalmeidatk.com"
