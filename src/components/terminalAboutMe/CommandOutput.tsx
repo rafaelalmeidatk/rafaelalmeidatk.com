@@ -21,12 +21,12 @@ const CommandOutput = () => (
 
     <JsonLine labelledBy="work-desc">
       <VisuallyHidden id="work-desc">
-        Currently working as a Software Developer at D3
+        Currently working as a Software Engineer at Hash
       </VisuallyHidden>
 
       <JsonKey text="work" />
-      <TerminalWord>{'"Software Developer @ '}</TerminalWord>
-      <TerminalWord href="https://d3.do">{'D3'}</TerminalWord>
+      <TerminalWord>{'"Software Engineer @ '}</TerminalWord>
+      <TerminalWord href="https://www.hash.com.br">{'Hash'}</TerminalWord>
       <TerminalWord>{'",'}</TerminalWord>
     </JsonLine>
 
