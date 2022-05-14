@@ -9,7 +9,7 @@ const numbersExtractRegex = /{([\d,-]+)}/;
 const getLinesToHighlightFunc = (str: string) => {
   if (!numbersExtractRegex.test(str)) return () => false;
 
-  const [, numbers] = numbersExtractRegex.exec(str);
+  const [, numbers] = numbersExtractRegex.exec(str) ?? [];
 
   const lineNumbers = numbers // "1,3-5"
     .split(',') // ["1", "3-5"]
