@@ -9,6 +9,9 @@
     "tc": "tsc -noEmit"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.0.0",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
@@ -16,11 +19,12 @@
     "bulma": "^0.9.3",
     "classnames": "^2.3.1",
     "date-fns": "^2.27.0",
+    "framer-motion": "^6",
     "gray-matter": "^4.0.3",
     "next": "^12.1.6",
     "prism-react-renderer": "^1.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "sass": "^1.45.0"
