@@ -7,6 +7,7 @@ export type Post = {
   slug: string;
   title: string;
   date: string;
+  link: string;
 };
 
 export const getAllPostsSlug = () => {
@@ -27,6 +28,7 @@ export const getPostBySlug = (slug: string): Post => {
     slug,
     title: pageModule.meta.title,
     date: pageModule.meta.date,
+    link: `/blog/${slug}`,
   };
 };
 

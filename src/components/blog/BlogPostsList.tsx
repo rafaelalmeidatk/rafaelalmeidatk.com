@@ -1,4 +1,4 @@
-import { formatRawDate } from '../../lib/postTime';
+import { formatPostDate } from '../../lib/postTime';
 import { Post } from '../../lib/posts';
 import styles from './BlogPostsList.module.css';
 
@@ -11,9 +11,7 @@ type BlogPostsListItemProps = {
 const BlogPostsListItem = ({ slug, title, date }: BlogPostsListItemProps) => (
   <a className={styles.listItem} href={`/blog/${slug}`}>
     <div className={styles.listItemTitle}>{title}</div>
-    <div className={styles.listItemDate}>
-      {formatRawDate(date, 'MMMM d, yyyy')}
-    </div>
+    <div className={styles.listItemDate}>{formatPostDate(date)}</div>
   </a>
 );
 
