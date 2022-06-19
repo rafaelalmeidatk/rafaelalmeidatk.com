@@ -77,8 +77,9 @@ const Home = ({ posts }: HomeProps) => {
         <SimpleGrid mt={5} spacing={6} columns={[1, 2]}>
           {projects.map((project) => (
             <GridItem
-              as={LinkBox}
               key={project.id}
+              as={LinkBox}
+              role="group"
               border="1px solid"
               borderColor="gray.700"
               borderRadius="md"
@@ -98,7 +99,14 @@ const Home = ({ posts }: HomeProps) => {
                     {project.title}
                   </LinkOverlay>
                 </Text>
-                <ExternalLinkIcon ml={2} boxSize={3} />
+
+                <ExternalLinkIcon
+                  ml={2}
+                  boxSize={3}
+                  opacity={0}
+                  transition="opacity .2s ease"
+                  _groupHover={{ opacity: 1 }}
+                />
               </Flex>
               <Text fontSize="sm" opacity={0.8} pointerEvents="none">
                 {project.description}
