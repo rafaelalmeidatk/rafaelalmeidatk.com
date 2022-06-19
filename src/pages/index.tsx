@@ -54,12 +54,23 @@ type HomeProps = {
 
 const Home = ({ posts }: HomeProps) => {
   return (
-    <Container marginY={[14, 40]} maxW="70ch">
+    <Container marginY={[14, 32]} maxW="70ch">
       <header>
-        <Heading as="h1" size="2xl">
-          Rafael Almeida
+        <Text fontSize="2xl">Hi there,</Text>
+        <Heading as="h1" fontSize="5xl">
+          I'm{' '}
+          <chakra.span
+            bg="linear-gradient(90deg,#ff4d4d,#f9cb28)"
+            bgClip="text"
+          >
+            Rafael Almeida
+          </chakra.span>{' '}
+          👋
         </Heading>
-        <Text mt={3}>Software Engineer trying not to break the web</Text>
+        <Text mt={3} color="whiteAlpha.800">
+          Software Engineer building full-stack web applications with React,
+          Node.js, TypeScript, and PostgreSQL
+        </Text>
 
         <Heading mt={12}>Projects</Heading>
 
