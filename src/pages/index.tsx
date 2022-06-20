@@ -12,6 +12,7 @@ import {
   chakra,
   LinkBox,
   LinkOverlay,
+  keyframes,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { getAllPosts, Post } from '../lib/posts';
@@ -48,6 +49,12 @@ const projects = [
   },
 ];
 
+const gradientText = keyframes`
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+`;
+
 type HomeProps = {
   posts: Post[];
 };
@@ -62,12 +69,15 @@ const Home = ({ posts }: HomeProps) => {
           <chakra.span
             bg="linear-gradient(90deg,#ff4d4d,#f9cb28)"
             bgClip="text"
+            bgSize="200%"
+            sx={{ '-webkit-text-fill-color': 'transparent' }}
+            animation={`${gradientText} 10s linear infinite`}
           >
             Rafael Almeida
           </chakra.span>{' '}
           👋
         </Heading>
-        <Text mt={3} color="whiteAlpha.800">
+        <Text mt={3} opacity={0.8}>
           Software Engineer building full-stack web applications with React,
           Node.js, TypeScript, and PostgreSQL
         </Text>
@@ -135,7 +145,6 @@ const Home = ({ posts }: HomeProps) => {
               _hover={{ opacity: 0.7 }}
               borderBottom="1px solid"
               borderColor="gray.700"
-              // borderRadius="md"
             >
               <Link href={post.link}>
                 <a>
