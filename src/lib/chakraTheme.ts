@@ -25,6 +25,28 @@ const theme = extendTheme({
         fontWeight: 'semibold',
       },
     },
+    Link: {
+      baseStyle: {
+        color: 'blue.300',
+        fontWeight: 'semibold',
+      },
+      variants: {
+        header: {
+          color: 'white',
+          fontFamily: 'monospace',
+          fontWeight: 'normal',
+          textDecoration: 'underline',
+          paddingX: 3,
+          paddingY: 1,
+          fontSize: 'md',
+          transition: 'opacity 0.2s ease',
+          _hover: {
+            opacity: 0.8,
+            textDecoration: 'none',
+          },
+        },
+      },
+    },
   },
 });
 
