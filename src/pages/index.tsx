@@ -83,7 +83,7 @@ const Home = ({ posts }: HomeProps) => {
         👋
       </Heading>
       <Text mt={3} opacity={0.8}>
-        Software Engineer building full-stack web applications with React,
+        I'm a Software Engineer building full-stack web applications with React,
         Node.js, TypeScript, and PostgreSQL. I like to hang out in Discord
         communities to help other developers, you will probably find me in{' '}
         <Link href="https://www.reactiflux.com/" isExternal>
