@@ -75,7 +75,7 @@ const Home = ({ posts }: HomeProps) => {
           bg="linear-gradient(90deg,#ff4d4d,#f9cb28)"
           bgClip="text"
           bgSize="200%"
-          sx={{ '-webkit-text-fill-color': 'transparent' }}
+          sx={{ WebkitTextFillColor: 'transparent' }}
           animation={`${gradientText} 10s linear infinite`}
         >
           Rafael Almeida
