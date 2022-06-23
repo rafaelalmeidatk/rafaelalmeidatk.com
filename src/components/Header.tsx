@@ -1,13 +1,5 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import {
-  Flex,
-  Link,
-  chakra,
-  IconButton,
-  LinkBox,
-  Stack,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Flex, Link, IconButton, Stack, useColorMode } from '@chakra-ui/react';
 import { GitHubIcon } from './GitHubIcon';
 import NextLink from 'next/link';
 
