@@ -24,23 +24,16 @@ export const BlogPostsList = ({ posts, ...props }: BlogPostsListProps) => {
     <Box {...props}>
       <Heading>Blog</Heading>
 
-      <List
-        mt={5}
-        spacing={1}
-        border="1px solid"
-        borderColor={borderColor}
-        borderRadius="md"
-      >
-        {posts.map((post) => (
+      <List mt={5} spacing={1}>
+        {posts.map((post, i) => (
           <ListItem
             key={post.slug}
             as="li"
             py={1.5}
-            px={3}
             fontSize="md"
             transition="opacity 0.2s ease"
             _hover={{ opacity: 0.7 }}
-            borderBottom="1px solid"
+            borderBottom={i !== posts.length - 1 ? '1px solid' : undefined}
             borderColor={borderColor}
           >
             <NextLink href={post.link}>

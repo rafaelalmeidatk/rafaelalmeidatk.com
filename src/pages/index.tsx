@@ -44,7 +44,7 @@ const Home = ({ posts }: HomeProps) => {
             >
               Rafael Almeida
             </chakra.span>{' '}
-            👋
+            ✌
           </Heading>
           <Text opacity={0.8}>
             I'm a Software Engineer building full-stack web applications with
