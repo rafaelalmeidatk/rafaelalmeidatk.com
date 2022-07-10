@@ -1,4 +1,5 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react';
+import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -11,10 +12,39 @@ const theme = extendTheme({
     heading: 'Inter, Helvetica, system-ui, sans-serif',
     body: 'Inter, Helvetica, system-ui, sans-serif',
   },
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      body: {
+        bg: mode('white', 'blackAlpha.900')(props),
+      },
+    }),
+  },
   components: {
     Heading: {
       baseStyle: {
         fontWeight: 'semibold',
+      },
+    },
+    Link: {
+      baseStyle: {
+        color: 'blue.300',
+        fontWeight: 'semibold',
+      },
+      variants: {
+        header: {
+          color: 'white',
+          fontFamily: 'monospace',
+          fontWeight: 'normal',
+          textDecoration: 'underline',
+          paddingX: 3,
+          paddingY: 1,
+          fontSize: 'md',
+          transition: 'opacity 0.2s ease',
+          _hover: {
+            opacity: 0.8,
+            textDecoration: 'none',
+          },
+        },
       },
     },
   },
