@@ -5,6 +5,7 @@ import {
   Flex,
   GridItem,
   Heading,
+  Link,
   LinkBox,
   LinkOverlay,
   SimpleGrid,
@@ -46,7 +47,15 @@ export const Projects = (props: BoxProps) => {
 
   return (
     <Box {...props}>
-      <Heading>Projects</Heading>
+      <Heading>
+        <Link
+          color="inherit"
+          href="https://github.com/rafaelalmeidatk"
+          isExternal
+        >
+          Projects
+        </Link>
+      </Heading>
 
       <SimpleGrid mt={5} spacing={6} columns={[1, 2]}>
         {projects.map((project) => (

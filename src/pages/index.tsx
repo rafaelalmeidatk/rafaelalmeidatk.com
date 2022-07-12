@@ -9,6 +9,7 @@ import {
   keyframes,
   Box,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import { getAllPosts, Post } from '../lib/posts';
 import { GetStaticProps } from 'next';
 import { Header } from '../components/Header';
@@ -64,7 +65,11 @@ const Home = ({ posts }: HomeProps) => {
         <Projects />
 
         <Box>
-          <Heading>Blog</Heading>
+          <Heading>
+            <NextLink href="/blog" passHref>
+              <Link color="inherit">Blog</Link>
+            </NextLink>
+          </Heading>
           <BlogPostsList posts={posts} size="compact" />
         </Box>
       </Stack>
