@@ -63,7 +63,10 @@ const Home = ({ posts }: HomeProps) => {
 
         <Projects />
 
-        <BlogPostsList posts={posts} />
+        <Box>
+          <Heading>Blog</Heading>
+          <BlogPostsList posts={posts} size="compact" />
+        </Box>
       </Stack>
     </Container>
   );

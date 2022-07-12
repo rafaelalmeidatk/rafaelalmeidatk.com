@@ -1,15 +1,15 @@
 import React from 'react';
 import assert from 'assert';
 import { MDXProvider } from '@mdx-js/react';
-import BlogLayout from '../blog/Layout';
-import BlogHeader from '../blog/Header';
-import BlogContent from '../blog/Content';
+import { chakra, Heading } from '@chakra-ui/react';
 import Seo from '../Seo';
-import PostHeader from './markdown/Heading';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
 import styles from './Post.module.css';
 import Footer from '../Footer';
+import { Layout } from '../Layout';
+import { Header } from '../Header';
+import { formatPostDate } from '../../lib/postTime';
 
 const markdownComponents = {
   a: Link,
@@ -35,21 +35,30 @@ const Post = ({ children, meta }: PostProps) => {
     <>
       <Seo title={meta.title} description={meta.description} isPost />
 
-      <BlogLayout>
-        <BlogHeader isBlogPost />
+      <Layout>
+        <Header />
 
-        <BlogContent>
-          <article>
-            <PostHeader title={meta.title} time={meta.date} />
+        <article>
+          <chakra.header mt={14} mb={8} textAlign="center">
+            <Heading>{meta.title}</Heading>
+            <chakra.time
+              dateTime={meta.date}
+              display="block"
+              mt={1.5}
+              fontSize="md"
+              opacity={0.8}
+            >
+              {formatPostDate(meta.date)}
+            </chakra.time>
+          </chakra.header>
 
-            <MDXProvider components={markdownComponents}>
-              <section className={styles.post}>{children}</section>
-            </MDXProvider>
-          </article>
-        </BlogContent>
+          <MDXProvider components={markdownComponents}>
+            <section className={styles.post}>{children}</section>
+          </MDXProvider>
+        </article>
 
         <Footer />
-      </BlogLayout>
+      </Layout>
     </>
   );
 };

@@ -1,9 +1,0 @@
-.layout {
-  margin: 0 auto;
-  padding: 0 1.3rem;
-  width: 100%;
-  max-width: 800px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
