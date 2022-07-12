@@ -47,7 +47,10 @@ const CodeBlock = ({ children, className, metastring }: CodeBlockProps) => {
   return (
     <Highlight {...defaultProps} code={code} language={language} theme={vsDark}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
+        <pre
+          className={className}
+          style={{ ...style, overflowX: 'auto', padding: '20px' }}
+        >
           {tokens.map((line, i) => {
             const lineProps = getLineProps({ line, key: i });
 
