@@ -12,10 +12,13 @@ const theme = extendTheme({
     heading: 'Inter, Helvetica, system-ui, sans-serif',
     body: 'Inter, Helvetica, system-ui, sans-serif',
   },
+  colors: {
+    darkBg: '#141414',
+  },
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bg: mode('white', 'blackAlpha.900')(props),
+        bg: mode('white', 'darkBg')(props),
       },
     }),
   },
@@ -32,7 +35,7 @@ const theme = extendTheme({
       },
       variants: {
         header: {
-          color: 'white',
+          color: mode('white', 'blackAlpha.900'),
           fontFamily: 'monospace',
           fontWeight: 'normal',
           textDecoration: 'underline',
