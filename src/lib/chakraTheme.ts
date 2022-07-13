@@ -34,8 +34,8 @@ const theme = extendTheme({
         fontWeight: 'semibold',
       },
       variants: {
-        header: {
-          color: mode('white', 'blackAlpha.900'),
+        header: (props: StyleFunctionProps) => ({
+          color: mode('blackAlpha.900', 'white')(props),
           fontFamily: 'monospace',
           fontWeight: 'normal',
           textDecoration: 'underline',
@@ -47,7 +47,7 @@ const theme = extendTheme({
             opacity: 0.8,
             textDecoration: 'none',
           },
-        },
+        }),
       },
     },
   },

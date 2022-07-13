@@ -43,7 +43,7 @@ const projects = [
 ];
 
 export const Projects = (props: BoxProps) => {
-  const borderColor = useColorModeValue('gray.800', 'whiteAlpha.200');
+  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
 
   return (
     <Box {...props}>

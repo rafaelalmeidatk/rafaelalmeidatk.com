@@ -22,7 +22,7 @@ export const BlogPostsList = ({
   size,
   ...props
 }: BlogPostsListProps) => {
-  const borderColor = useColorModeValue('gray.800', 'whiteAlpha.200');
+  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
 
   return (
     <Box {...props}>
