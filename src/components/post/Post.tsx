@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { MDXProvider } from '@mdx-js/react';
-import { chakra, Heading } from '@chakra-ui/react';
+import { chakra, Heading, useColorModeValue } from '@chakra-ui/react';
 import { Seo } from '../Seo';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
@@ -25,6 +25,8 @@ type PostProps = {
 };
 
 export const Post = ({ children, meta }: PostProps) => {
+  const codeBlockBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100');
+
   assert(meta.title, 'The post is missing a title!');
   assert(meta.description, 'The post is missing a description!');
   assert(meta.date, 'The post is missing a date!');
@@ -64,7 +66,7 @@ export const Post = ({ children, meta }: PostProps) => {
                   lineHeight: 1.7,
                 },
                 code: {
-                  bg: 'rgba(255, 255, 255, 0.05)',
+                  bg: codeBlockBg,
                   fontSize: 'sm',
                   fontWeight: 'semibold',
                   py: 1,

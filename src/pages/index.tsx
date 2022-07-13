@@ -37,7 +37,8 @@ const Home = ({ posts }: HomeProps) => {
           <Heading as="h1" fontSize="5xl">
             I'm{' '}
             <chakra.span
-              bg="linear-gradient(90deg,#ff4d4d,#f9cb28)"
+              // yeah I got these colors from Vercel :P
+              bg="linear-gradient(90deg, #ff4d4d, #f9cb28)"
               bgClip="text"
               bgSize="200%"
               sx={{ WebkitTextFillColor: 'transparent' }}

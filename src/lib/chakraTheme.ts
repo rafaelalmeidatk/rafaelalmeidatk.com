@@ -29,10 +29,10 @@ const theme = extendTheme({
       },
     },
     Link: {
-      baseStyle: {
-        color: 'blue.300',
+      baseStyle: (props: StyleFunctionProps) => ({
+        color: mode('blue.600', 'blue.200')(props),
         fontWeight: 'semibold',
-      },
+      }),
       variants: {
         header: (props: StyleFunctionProps) => ({
           color: mode('blackAlpha.900', 'white')(props),
