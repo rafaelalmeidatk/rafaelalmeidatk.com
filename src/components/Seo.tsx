@@ -7,7 +7,7 @@ type SeoProps = {
   isPost?: boolean;
 };
 
-const Seo = ({ title, description, isPost = false }: SeoProps) => {
+export const Seo = ({ title, description, isPost = false }: SeoProps) => {
   const router = useRouter();
 
   return (
@@ -67,5 +67,3 @@ const Seo = ({ title, description, isPost = false }: SeoProps) => {
     </Head>
   );
 };
-
-export default Seo;

@@ -2,10 +2,9 @@ import React from 'react';
 import assert from 'assert';
 import { MDXProvider } from '@mdx-js/react';
 import { chakra, Heading } from '@chakra-ui/react';
-import Seo from '../Seo';
+import { Seo } from '../Seo';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
-import styles from './Post.module.css';
 import Footer from '../Footer';
 import { Layout } from '../Layout';
 import { Header } from '../Header';
@@ -26,7 +25,7 @@ type PostProps = {
   children: React.ReactNode;
 };
 
-const Post = ({ children, meta }: PostProps) => {
+export const Post = ({ children, meta }: PostProps) => {
   assert(meta.title, 'The post is missing a title!');
   assert(meta.description, 'The post is missing a description!');
   assert(meta.date, 'The post is missing a date!');
@@ -53,7 +52,54 @@ const Post = ({ children, meta }: PostProps) => {
           </chakra.header>
 
           <MDXProvider components={markdownComponents}>
-            <section className={styles.post}>{children}</section>
+            <chakra.section
+              sx={{
+                h2: {
+                  mt: 6,
+                  mb: 4,
+                },
+                p: {
+                  fontSize: 'lg',
+                  lineHeight: 1.7,
+                },
+                code: {
+                  bg: 'rgba(255, 255, 255, 0.05)',
+                  fontSize: 'sm',
+                  fontWeight: 'semibold',
+                  py: 1,
+                  px: 1.5,
+                },
+                blackquote: {
+                  px: 6,
+                  fontStyle: 'italic',
+                },
+                // Lists
+                ul: {
+                  listStyle: 'disc',
+                },
+                'ol, ul': {
+                  paddingLeft: 8,
+                  fontSize: 'lg',
+                },
+                'ol li + li, ul li + li': {
+                  mt: 3,
+                },
+                // Margins
+                'p, blackquote, ul, ol, pre': {
+                  mb: 5,
+                },
+                pre: {
+                  mx: [-4, null, 0],
+                },
+                // Links
+                a: {
+                  color: 'blue.300',
+                  fontWeight: 'semibold',
+                },
+              }}
+            >
+              {children}
+            </chakra.section>
           </MDXProvider>
         </article>
 
@@ -62,5 +108,3 @@ const Post = ({ children, meta }: PostProps) => {
     </>
   );
 };
-
-export default Post;

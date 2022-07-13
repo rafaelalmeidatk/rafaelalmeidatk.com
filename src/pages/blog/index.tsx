@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
 import { Post, getAllPosts } from '../../lib/posts';
-import Seo from '../../components/Seo';
+import { Seo } from '../../components/Seo';
 import { Layout } from '../../components/Layout';
 import { Header } from '../../components/Header';
 import { BlogPostsList } from '../../components/BlogPostsList';
