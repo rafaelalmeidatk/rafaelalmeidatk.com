@@ -5,7 +5,6 @@ import { chakra, Heading } from '@chakra-ui/react';
 import { Seo } from '../Seo';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
-import Footer from '../Footer';
 import { Layout } from '../Layout';
 import { Header } from '../Header';
 import { formatPostDate } from '../../lib/postTime';
@@ -57,6 +56,8 @@ export const Post = ({ children, meta }: PostProps) => {
                 h2: {
                   mt: 6,
                   mb: 4,
+                  fontSize: '3xl',
+                  fontWeight: 'bold',
                 },
                 p: {
                   fontSize: 'lg',
@@ -102,8 +103,6 @@ export const Post = ({ children, meta }: PostProps) => {
             </chakra.section>
           </MDXProvider>
         </article>
-
-        <Footer />
       </Layout>
     </>
   );

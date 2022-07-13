@@ -5,7 +5,6 @@ import {
   Text,
   chakra,
   Box,
-  Heading,
   BoxProps,
   useColorModeValue,
 } from '@chakra-ui/react';
