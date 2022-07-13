@@ -9,7 +9,7 @@ const numbersExtractRegex = /{([\d,-]+)}/;
 const getLinesToHighlightFunc = (str: string) => {
   if (!numbersExtractRegex.test(str)) return () => false;
 
-  const [, numbers] = numbersExtractRegex.exec(str);
+  const [, numbers] = numbersExtractRegex.exec(str) ?? [];
 
   const lineNumbers = numbers // "1,3-5"
     .split(',') // ["1", "3-5"]
@@ -47,7 +47,10 @@ const CodeBlock = ({ children, className, metastring }: CodeBlockProps) => {
   return (
     <Highlight {...defaultProps} code={code} language={language} theme={vsDark}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
+        <pre
+          className={className}
+          style={{ ...style, overflowX: 'auto', padding: '20px' }}
+        >
           {tokens.map((line, i) => {
             const lineProps = getLineProps({ line, key: i });
 

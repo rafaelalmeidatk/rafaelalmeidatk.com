@@ -1,108 +1,102 @@
-import React from 'react';
-import cx from 'classnames';
-import ProjectCard, { PROJECT_CARD_ANIMATION_DURATION } from './ProjectCard';
-import { useGlobalDelay } from './GlobalDelayContext';
-import styles from './Projects.module.css';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  BoxProps,
+  Flex,
+  GridItem,
+  Heading,
+  Link,
+  LinkBox,
+  LinkOverlay,
+  SimpleGrid,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 const projects = [
   {
     id: 'twitter-fullstack-clone',
-    cover: 'https://i.imgur.com/EGnz7hT.jpg',
     title: 'Twitter Fullstack Clone',
     link: 'https://github.com/rafaelalmeidatk/twitter-fullstack-clone',
+    description:
+      'Fullstack clone of Twitter, created with React, Next.js, Apollo, Node.js, Express, GraphQL, PostgreSQL, and Docker',
   },
   {
     id: 'discord-react-clone',
-    cover: 'https://i.imgur.com/nkh2lZ0.jpg',
     title: 'Discord React Clone',
     link: 'https://github.com/rafaelalmeidatk/discord-react-clone',
+    description: "Front-end replication of Discord's app made with React",
   },
   {
     id: 'hitbox',
-    cover: 'https://i.imgur.com/EDpgUAw.jpg',
     title: 'Hitbox',
     link: 'https://github.com/rafaelalmeidatk/hitbox',
-  },
-  {
-    id: 'summoners',
-    cover: 'https://i.imgur.com/1qY32Cs.jpg',
-    title: 'Summoners',
-    link: 'https://github.com/rafaelalmeidatk/summoners',
-  },
-  {
-    id: 'ideas',
-    cover: 'https://i.imgur.com/NSfsfPM.jpg',
-    title: 'I Need Ideas',
-    link: 'https://github.com/rafaelalmeidatk/i-need-ideas',
+    description:
+      'Program for creating animations based on a sprite sheet, you can edit the frames and colliders and see the results in real time',
   },
   {
     id: 'super-pete',
-    cover: 'https://i.imgur.com/GUjHlHR.jpg',
     title: 'Super Pete The Pirate',
     link: 'https://github.com/rafaelalmeidatk/Super-Pete-The-Pirate',
-  },
-  {
-    id: 'machina',
-    cover: 'https://i.imgur.com/8yUeyNc.jpg',
-    title: 'Machina Rising',
-    link: 'https://github.com/Phantom-Ignition/LudumDare40',
-  },
-  {
-    id: 'blaze',
-    cover: 'https://i.imgur.com/CD4eR5H.jpg',
-    title: 'Blaze Strike',
-    link: 'https://github.com/Phantom-Ignition/MonoGameJam1',
-  },
-  {
-    id: 'sirius',
-    title: 'Sirius Firmware',
-    cover:
-      'https://camo.githubusercontent.com/7277a060f5710f6ab1815455e035d3e9d913514a/687474703a2f2f692e696d6775722e636f6d2f6e4370496f70732e6a7067',
-    link: 'https://github.com/SIRLab/Sirius-Firmware',
+    description: 'Source code of the game "Super Pete, The Pirate"',
   },
 ];
 
-const PROJECTS_OPEN_DURATION = 400;
-
-const Projects = () => {
-  const { getCurrentCssDelay, registerAnimation } = useGlobalDelay();
-  const globalCssDelay = getCurrentCssDelay();
-  registerAnimation(PROJECTS_OPEN_DURATION);
-
-  const cardsGlobalCssDelay = getCurrentCssDelay();
-  registerAnimation(PROJECT_CARD_ANIMATION_DURATION);
+export const Projects = (props: BoxProps) => {
+  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
 
   return (
-    <section className={styles.projects}>
-      <div className="container">
-        <div className={styles.titleWrapper}>
-          <h2
-            className={styles.h2}
-            style={{
-              animationDuration: `${PROJECTS_OPEN_DURATION}ms`,
-              animationDelay: globalCssDelay,
+    <Box {...props}>
+      <Heading>
+        <Link
+          color="inherit"
+          href="https://github.com/rafaelalmeidatk"
+          isExternal
+        >
+          Projects
+        </Link>
+      </Heading>
+
+      <SimpleGrid mt={5} spacing={6} columns={[1, 2]}>
+        {projects.map((project) => (
+          <GridItem
+            key={project.id}
+            as={LinkBox}
+            role="group"
+            border="1px solid"
+            borderColor={borderColor}
+            borderRadius="md"
+            py={3}
+            px={4}
+            position="relative"
+            top={0}
+            transition="all 0.2s ease"
+            _hover={{
+              top: '-2px',
+              opacity: 0.9,
             }}
           >
-            Projects
-          </h2>
-        </div>
+            <Flex alignItems="center">
+              <Text fontSize="lg" fontWeight="semibold">
+                <LinkOverlay href={project.link} isExternal>
+                  {project.title}
+                </LinkOverlay>
+              </Text>
 
-        <div className={cx(styles.columns, 'columns')}>
-          {projects.map((project) => (
-            <div key={project.id} className={styles.column}>
-              <ProjectCard
-                id={project.id}
-                title={project.title}
-                cover={project.cover}
-                link={project.link}
-                animationDelayCss={cardsGlobalCssDelay}
+              <ExternalLinkIcon
+                ml={2}
+                boxSize={3}
+                opacity={0}
+                transition="opacity .2s ease"
+                _groupHover={{ opacity: 1 }}
               />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            </Flex>
+            <Text fontSize="sm" opacity={0.8} pointerEvents="none">
+              {project.description}
+            </Text>
+          </GridItem>
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
-
-export default Projects;
