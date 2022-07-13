@@ -6,7 +6,7 @@ import chakraTheme from '../lib/chakraTheme';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={chakraTheme}>
-      <Seo description="Software Developer, learning how to break stuff in different ways" />
+      <Seo description="Software Engineer building full-stack web applications with React, Node.js, TypeScript, and PostgreSQL" />
 
       <Component {...pageProps} />
     </ChakraProvider>
