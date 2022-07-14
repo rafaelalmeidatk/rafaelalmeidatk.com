@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Text,
-  Container,
   Heading,
   Stack,
   Link,
@@ -15,6 +14,7 @@ import { GetStaticProps } from 'next';
 import { Header } from '../components/Header';
 import { Projects } from '../components/Projects';
 import { BlogPostsList } from '../components/BlogPostsList';
+import { Layout } from '../components/Layout';
 
 const gradientText = keyframes`
   0% { background-position: 0 50%; }
@@ -28,13 +28,13 @@ type HomeProps = {
 
 const Home = ({ posts }: HomeProps) => {
   return (
-    <Container marginY={[14, 14]} maxW="70ch">
+    <Layout>
       <Header />
 
-      <Stack spacing={12} mt={14}>
+      <Stack spacing={[6, 8, 12]} mt={[4, 8, 14]}>
         <Box>
-          <Text fontSize="2xl">Hi there,</Text>
-          <Heading as="h1" fontSize="5xl">
+          <Text fontSize={['xl', '2xl']}>Hi there,</Text>
+          <Heading as="h1" fontSize={['3xl', '4xl', '5xl']}>
             I'm{' '}
             <chakra.span
               // yeah I got these colors from Vercel :P
@@ -46,9 +46,9 @@ const Home = ({ posts }: HomeProps) => {
             >
               Rafael Almeida
             </chakra.span>{' '}
-            ✌
+            👋
           </Heading>
-          <Text opacity={0.8}>
+          <Text opacity={0.8} lineHeight={1.6}>
             I'm a Software Engineer building full-stack web applications with
             React, Node.js, TypeScript, and PostgreSQL. I like to hang out in
             Discord communities to help other developers, you will probably find
@@ -74,7 +74,7 @@ const Home = ({ posts }: HomeProps) => {
           <BlogPostsList posts={posts} size="compact" />
         </Box>
       </Stack>
-    </Container>
+    </Layout>
   );
 };
 

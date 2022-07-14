@@ -22,7 +22,7 @@ const Blog = ({ posts }: BlogProps) => (
     <Header />
 
     <Box flex="1 1 auto">
-      <Heading as="h1" mt={14} mb={8} textAlign="center">
+      <Heading as="h1" mt={[4, 8, 14]} mb={[4, null, 8]} textAlign="center">
         Blog posts
       </Heading>
 
