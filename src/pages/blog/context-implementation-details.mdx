@@ -1,0 +1,171 @@
+import { Post } from '../../components/post/Post';
+
+export const meta = {
+  title: 'Writting effective React Contexts',
+  description:
+    "Axios has some issues with errors and stack traces, here's how you can fix it yourself",
+  date: '2020-01-14',
+};
+
+export const config = { unstable_runtimeJS: false };
+
+export default Post;
+
+In React we can share data through different components using props, they can be interpreted as function parameters. When you have a state at the top of the application and need to make it accessible in a component down the component tree, the simplest way is to pass down the state via props.
+
+However, passing down a prop through multiple components can get annoying fast and makes refactoring harder since the components start receiving a lot of props. This problem is called prop drilling and one of the solutions for it is the Context API.
+
+## The basics of Context
+
+A context can be created with `React.createContext()`, this function will return a context object which includes the provider and can be used to read the context value.
+
+```js
+import { createContext } from 'react';
+
+// The first argument is the default value for the context
+// if the provider could not be found
+const CounterContext = createContext(0);
+
+function App() {
+  // We create the state that we want to share though the app
+  const [counter, setCounter] = useState(0);
+
+  /// ...
+
+  return (
+    // Everything inside the provider will be able to read
+    // the value of the context
+    <CounterContext.Provider value={counter}>...</CounterContext.Provider>
+  );
+}
+```
+
+To read the value of context in the components down the component tree you can use the `useContext` hook. If a provider is not found up in the component tree the default value for the context will be returned (in this case it is `0`).
+
+```js
+function Display() {
+  const counter = useContext(CounterContext);
+
+  return <div>Counter value: {counter}</div>;
+}
+```
+
+## Provider file
+
+Currently the logic of the provider in the examples above (the counter state) is directly inside the `App` component. This is not ideal because as the context gets more complex you will start having a lot of unrelated code in the `App` component, which usually contains a lot more stuff.
+
+Just like other components the first improvement we can make is move it to its own file.
+
+```js
+// CounterProvider.js
+import { createContext } from 'react';
+
+export const CounterContext = createContext(0);
+
+export function CounterProvider({ chidren }) {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <CounterContext.Provider value={counter}>
+      {children}
+    </CounterContext.Provider>
+  );
+}
+
+// App.js
+import { CounterProvider } from './CounterProvider';
+
+function App() {
+  return <CounterProvider>...</CounterProvider>;
+}
+```
+
+## Custom hook to consume the context
+
+We need to import two different things every time we want to read the counter value: the context object (`CounterContext`) and the `useContext` hook.
+
+Instead of exporting our context object we can create a custom hook that calls `useContext` with the context object:
+
+```js
+// CounterProvider.js
+const CounterContext = createContext(0);
+
+export function useCounter() {
+  return useContext(CounterContext);
+}
+```
+
+Now all the consumer components have to import is the custom hook:
+
+```js
+import { useCounter } from './CounterProvider';
+
+function Display() {
+  const counter = useCounter();
+
+  return <div>Counter value: {counter}</div>;
+}
+```
+
+## Don't leak implementation details of the provider
+
+Our provider is only passing the counter value but we would like to allow the components to increase it too. The provider value can be anything so it is perfectly valid to make it an object that contains both the value and a function to change it.
+
+Here comes a common mistake: changing the context value to be an object like `{ counter, setCounter }`. Why is it bad?
+
+Consider this code:
+
+```js
+export function CounterProvider({ chidren }) {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <CounterContext.Provider value={{ counter, setCounter }}>
+      {children}
+    </CounterContext.Provider>
+  );
+}
+```
+
+To increase the counter, this is what the consumer should do:
+
+<!-- prettier-ignore -->
+```js
+function CounterButton() {
+  const { counter, setCounter } = useCounter();
+
+  return (
+    <button onClick={() => setCounter((prev) => prev + 1)}>
+      {counter}
+    </button>
+  );
+}
+```
+
+There are a few issues here:
+
+1. We only wanted the consumers to be able to increase our counter, but by exposing the `setCounter` function they can mess with the provider state and break the context.
+2. The consumer contains the logic to increase the counter. If later on we want to change the counter to only be incremented by 2, we would need to change this logic in all components.
+3. The `setCounter` method is directly tied to the implementation of the state with `useState`. If the state grows into a bigger object and we decide to use `useReducer` to manage it, then all consumers should be changed.
+
+Instead of exposing the setter functions directly, consider creating small functions that abstract the state and allows the consumer to correctly interact with your provider:
+
+```js
+export function CounterProvider({ chidren }) {
+  const [counter, setCounter] = useState(0);
+
+  const increment = () => {
+    setCounter((prev) => prev + 1);
+  };
+
+  return (
+    <CounterContext.Provider value={{ counter, increment }}>
+      {children}
+    </CounterContext.Provider>
+  );
+}
+```
+
+If later on we decide to increment by 2 or if we change the state to `useReducer` or any other library, we only need to update the provider code.
+
+This is specially important when writting library code where we want to minimize breaking changes for the consumers of the context.
