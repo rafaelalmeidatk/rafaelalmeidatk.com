@@ -25,7 +25,7 @@ type PostProps = {
 };
 
 export const Post = ({ children, meta }: PostProps) => {
-  const codeBlockBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100');
+  const lightBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100');
 
   assert(meta.title, 'The post is missing a title!');
   assert(meta.description, 'The post is missing a description!');
@@ -66,14 +66,16 @@ export const Post = ({ children, meta }: PostProps) => {
                   lineHeight: 1.7,
                 },
                 code: {
-                  bg: codeBlockBg,
+                  bg: lightBg,
                   fontSize: 'sm',
                   fontWeight: 'semibold',
                   py: 1,
                   px: 1.5,
                 },
-                blackquote: {
-                  px: 6,
+                blockquote: {
+                  px: 3,
+                  borderLeftWidth: '4px',
+                  borderLeftColor: lightBg,
                   fontStyle: 'italic',
                 },
                 // Lists
