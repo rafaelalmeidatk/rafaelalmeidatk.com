@@ -1,17 +1,19 @@
 import React from 'react';
 import assert from 'assert';
-import { MDXProvider } from '@mdx-js/react';
+import { MDXProvider, MDXProviderComponents } from '@mdx-js/react';
 import { chakra, Heading, useColorModeValue } from '@chakra-ui/react';
 import { Seo } from '../Seo';
 import CodeBlock from './markdown/CodeBlock';
 import Link from './markdown/Link';
+import { PostHeading } from './markdown/PostHeading';
 import { Layout } from '../Layout';
 import { Header } from '../Header';
 import { formatPostDate } from '../../lib/postTime';
 
-const markdownComponents = {
+const markdownComponents: MDXProviderComponents = {
   a: Link,
-  pre: (props: React.HTMLProps<HTMLDivElement>) => <div {...props} />,
+  pre: (props) => <div {...props} />,
+  h2: (props) => <PostHeading htmlTag="h2" {...props} />,
   code: CodeBlock,
 };
 
@@ -95,11 +97,6 @@ export const Post = ({ children, meta }: PostProps) => {
                 },
                 pre: {
                   mx: [-4, null, 0],
-                },
-                // Links
-                a: {
-                  color: 'blue.300',
-                  fontWeight: 'semibold',
                 },
               }}
             >
