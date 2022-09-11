@@ -6,7 +6,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <Container marginY={[4, 8, 14]} maxW="70ch">
+    <Container marginY={[4, 8, 14]} maxW="75ch">
       {children}
     </Container>
   );
