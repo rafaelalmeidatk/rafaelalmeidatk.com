@@ -7,10 +7,6 @@ import { Header } from '../../components/Header';
 import { BlogPostsList } from '../../components/BlogPostsList';
 import { Box, Heading } from '@chakra-ui/react';
 
-export const config = {
-  unstable_runtimeJS: false,
-};
-
 type BlogProps = {
   posts: Post[];
 };
