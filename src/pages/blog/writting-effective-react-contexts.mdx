@@ -15,7 +15,7 @@ In React we can share data through different components using props, they can be
 
 However, passing down a prop through multiple components can get annoying fast and makes refactoring harder since the components start receiving a lot of props. This problem is called prop drilling and one of the solutions for it is the Context API.
 
-While the Context API itself is simple, a bad implementation could make the maintanence of the code harder or degrade the performance of the app. I am going to share a few tips to help you organize and write more efficient contexts.
+While the Context API itself is simple, a bad implementation could make the maintenance of the code harder or degrade the performance of the app. I am going to share a few tips to help you organize and write more efficient contexts.
 
 ## The basics of Context
 
@@ -28,7 +28,7 @@ import { createContext, useState } from 'react';
 const CounterContext = createContext(0);
 
 function App() {
-  // We create the state that we want to share though the app
+  // We create the state that we want to share through the app
   const [counter, setCounter] = useState(0);
 
   /// ...
@@ -58,7 +58,7 @@ function Display() {
 
 ## Create the Provider file
 
-Currently the logic of the provider in the examples above (the counter state) is directly inside the `App` component. This is not ideal because as the context gets more complex you will start having a lot of unrelated code in the `App` component, which usually contains a lot more stuff.
+Currently, the logic of the provider in the examples above (the counter state) is directly inside the `App` component. This is not ideal because as the context gets more complex you will start having a lot of unrelated code in the `App` component, which usually contains a lot more stuff.
 
 Just like other components the first improvement we can make is to move it to its own file.
 
@@ -90,7 +90,7 @@ function App() {
 
 We need to import two different things every time we want to read the counter value: the context object (`CounterContext`) and the `useContext` hook.
 
-Instead of exporting our context object we can create a custom hook that calls `useContext` with the context object:
+Instead of exporting our context object, we can create a custom hook that calls `useContext` with the context object:
 
 ```js
 // We are removing the `export` from the context so the consumer
@@ -158,7 +158,7 @@ There are a few issues here:
 2. The consumer contains the logic to increase the counter. If later on we want to change the counter to only be incremented by 2, we would need to change this logic in all components.
 3. The `setCounter` method is directly tied to the implementation of the state with `useState`. If the state grows into a bigger object and we decide to use `useReducer` to manage it, then all consumers should be changed.
 
-Instead of exposing the setter functions directly, consider creating small functions that abstract the state and allows the consumer to correctly interact with your provider:
+Instead of exposing the setter functions directly, consider creating small functions that abstract the state and allow the consumer to correctly interact with your provider:
 
 ```js
 export function CounterProvider({ children }) {
@@ -184,7 +184,7 @@ This is especially important when writing library code where we want to minimize
 
 We wanted to make our context send two variables so we had to change the context value from a number to an object. But by doing `value={{ ... }}` we are potentially introducing a performance problem in our app: every time the provider re-renders it will tell all consumers of the context to re-render too, even if the variables inside the object didn't change.
 
-In order to determine if the value changed, the Context API uses the `Object.is()` function with the previous and new values. Since our value is an object it follows the referential equality rule, which means both values should have the same reference in order to be considered equal.
+To determine if the value changed, the Context API uses the `Object.is()` function with the previous and new values. Since our value is an object it follows the referential equality rule, which means both values should have the same reference to be considered equal.
 
 So what is happening is that every time our provider component re-renders we are creating a new object and this will make the equality check to fail. To solve this we can use the `useMemo` hook:
 
@@ -216,9 +216,9 @@ The hook will create the object only once and return the same reference on every
 
 When you have your context created it might be tempting to add everything that you want to be global in there. But as mentioned in the previous section, any changes will recreate the object, triggering a re-render in all the components that are consuming the context.
 
-Re-rendering a couple components is not a big deal, but as your context grows the performance of the app may get worse since changing a single value will update a lot of unrelated components. If you notice that your context is holding two values that are completely unrelated to each other, consider spliting them into different contexts.
+Re-rendering a couple of components is not a big deal, but as your context grows the performance of the app may get worse since changing a single value will update a lot of unrelated components. If you notice that your context is holding two values that are completely unrelated to each other, consider splitting them into different contexts.
 
-Are you noticing that your app is growing, there is too many contexts being created and managing the state is becoming complex? Maybe it is time to use a state management library, such as [Redux Toolkit](https://redux-toolkit.js.org) or [Recoil](https://recoiljs.org).
+Are you noticing that your app is growing, there are too many contexts being created, and managing the state is becoming complex? Maybe it is time to use a state management library, such as [Redux Toolkit](https://redux-toolkit.js.org) or [Recoil](https://recoiljs.org).
 
 ## Throw an error when no provider is found
 
@@ -231,11 +231,11 @@ const CounterContext = createContext({
 });
 ```
 
-The new default value now matches the shape of the value of our provider, but we need to stop a bit and think about it. What do we really want to happen when someone tries to read the counter when they didn't setup the provider? There is no state associated with the default value, so any calls to `increment` would do nothing.
+The new default value now matches the shape of the value of our provider, but we need to stop a bit and think about it. What do we really want to happen when someone tries to read the counter when they didn't set up the provider? There is no state associated with the default value, so any calls to `increment` would do nothing.
 
 This default value is allowing the consumers of the provider to run the app with no errors, they will only notice something is wrong when they try to call `increase` and the number doesn't change. We want to fail fast.
 
-To fix this we are gonna change the default value to be `null`, so if the provider isn't found in the tree above the component we are gonna check for `null` and throw an error. This is easily done by changing the hook we made earlier:
+To fix this we are gonna change the default value to `null`, so if the provider isn't found in the tree above the component we are gonna check for `null` and throw an error. This is easily done by changing the hook we made earlier:
 
 <!-- prettier-ignore -->
 ```js
@@ -254,7 +254,7 @@ export function useCounter() {
 }
 ```
 
-Now if the consumer tries to use our hook without setting up the provider first, we are gonna give an useful error telling what is the problem. We could further improve the error with instructions:
+Now if the consumer tries to use our hook without setting up the provider first, we are gonna give a useful error telling what is the problem. We could further improve the error with instructions:
 
 > `useCounter` cannot be called without a `CounterProvider`. Did you forget to wrap your app with the provider?
 
@@ -275,9 +275,9 @@ const CounterContext = createContext<CounterContextValue | null>(null);
 
 We are using `null` to check if the consumer didn't set up the provider, so the type of the context is going to be either `CounterContextValue` or `null`. Since in our hook we are throwing an error if the context value is `null`, it is guaranteed that the return type of `useCounter` will always be `CounterContextValue`.
 
-## The full code
+## The final code
 
-This is the full code of the provider with all the tips applied, you can use it as a template for new providers:
+This is the final code of the provider with all the tips applied. You can use it as a template for new contexts:
 
 <!-- prettier-ignore -->
 ```tsx
