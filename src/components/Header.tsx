@@ -1,59 +1,50 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Flex, Link, IconButton, Stack, useColorMode } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 import { GitHubIcon } from './GitHubIcon';
 import NextLink from 'next/link';
+
+const MENU_ITEMS = ['/', '/blog'];
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Flex
-      as="header"
-      justifyContent="space-between"
-      alignItems="stretch"
-      marginX={-3}
-    >
-      <Stack direction="row" alignItems="center">
-        <NextLink href="/" passHref>
-          <Link variant="header">/</Link>
-        </NextLink>
+    <header className="flex justify-between items-center -mx-3">
+      <nav className="flex items-center space-x-2">
+        {MENU_ITEMS.map((item) => (
+          <NextLink key={item} href={item}>
+            <a className="font-mono underline px-3 py-1 transition hover:opacity-80 hover:no-underline">
+              {item}
+            </a>
+          </NextLink>
+        ))}
+      </nav>
 
-        <NextLink href="/blog" passHref>
-          <Link variant="header">/blog</Link>
-        </NextLink>
-      </Stack>
-
-      <Stack alignItems="center" direction="row" spacing={3}>
-        <Link
+      <div className="flex items-center space-x-3">
+        <a
           aria-label="My GitHub profile"
           href="https://github.com/rafaelalmeidatk"
-          isExternal
-          color="currentColor"
-          transition="opacity .2s ease"
-          opacity={0.7}
-          _hover={{ opacity: 0.9 }}
+          target="_blank"
+          rel="noopener"
+          className="block transition  opacity-70 hover:opacity-90"
         >
           <GitHubIcon boxSize={7} />
-        </Link>
+        </a>
 
-        <IconButton
+        <button
           onClick={toggleColorMode}
           aria-label={`Switch to ${
             colorMode === 'light' ? 'dark' : 'light'
           } mode`}
-          icon={
-            colorMode === 'light' ? (
-              <MoonIcon boxSize={7} />
-            ) : (
-              <SunIcon boxSize={7} />
-            )
-          }
-          variant="ghost"
-          transition="opacity .2s ease"
-          opacity={0.7}
-          _hover={{ opacity: 0.9 }}
-        />
-      </Stack>
-    </Flex>
+          className="transition w-10 opacity-70 hover:opacity-90"
+        >
+          {colorMode === 'light' ? (
+            <MoonIcon boxSize={7} />
+          ) : (
+            <SunIcon boxSize={7} />
+          )}
+        </button>
+      </div>
+    </header>
   );
 };

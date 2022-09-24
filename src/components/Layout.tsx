@@ -1,13 +1,11 @@
-import { Container } from '@chakra-ui/react';
-
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <Container marginY={[4, 8, 14]} maxW="75ch">
+    <div className="px-4 mx-auto max-w-[75ch] my-4 sm:my-8 md:my-14">
       {children}
-    </Container>
+    </div>
   );
 };
