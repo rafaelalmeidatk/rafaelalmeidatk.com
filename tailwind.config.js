@@ -5,7 +5,18 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        heading: {
+          '0%': { backgroundPosition: '0 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0 50%' },
+        },
+      },
+      animation: {
+        heading: 'heading 10s linear infinite',
+      },
+    },
   },
   plugins: [],
 };

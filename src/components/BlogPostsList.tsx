@@ -1,67 +1,32 @@
-import {
-  List,
-  ListItem,
-  Stack,
-  Text,
-  chakra,
-  Box,
-  BoxProps,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import clsx from 'clsx';
 import { Post } from '../lib/posts';
 import { formatPostDateShort } from '../lib/postTime';
-import NextLink from 'next/link';
+import { Link } from './Link';
 
-type BlogPostsListProps = BoxProps & {
+type BlogPostsListProps = {
   posts: Post[];
   size: 'compact' | 'full';
 };
 
-export const BlogPostsList = ({
-  posts,
-  size,
-  ...props
-}: BlogPostsListProps) => {
-  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
-
+export const BlogPostsList = ({ posts, size }: BlogPostsListProps) => {
   return (
-    <Box {...props}>
-      <List mt={5} spacing={1}>
-        {posts.map((post, i) => (
-          <ListItem
-            key={post.slug}
-            as="li"
-            py={1.5}
-            fontSize={size === 'compact' ? 'md' : 'xl'}
-            transition="opacity 0.2s ease"
-            _hover={{ opacity: 0.7 }}
-            borderBottom={i !== posts.length - 1 ? '1px solid' : undefined}
-            borderColor={borderColor}
-          >
-            <NextLink href={post.link}>
-              <a>
-                <Stack
-                  direction={['column', 'row']}
-                  spacing={0}
-                  py={2}
-                  alignItems={['unset', 'center']}
-                >
-                  <Text
-                    flex={1}
-                    mr={3}
-                    noOfLines={size === 'compact' ? 1 : undefined}
-                  >
-                    {post.title}
-                  </Text>
-                  <chakra.span flexShrink={0} fontSize="md">
-                    {formatPostDateShort(post.date)}
-                  </chakra.span>
-                </Stack>
-              </a>
-            </NextLink>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    <ul className="mt-5 space-y-1 divide-y divide-neutral-800">
+      {posts.map((post, i) => (
+        <li
+          key={post.slug}
+          className={clsx(
+            'py-1.5 transition-opacity hover:opacity-70',
+            size === 'compact' ? 'text-md' : 'text-xl'
+          )}
+        >
+          <Link href={post.link} className="text-current font-normal">
+            <div className="flex flex-col sm:flex-row py-2 sm:items-center">
+              <div className="flex-1 mr-3 truncate">{post.title}</div>
+              <span className="shrink-0">{formatPostDateShort(post.date)}</span>
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };

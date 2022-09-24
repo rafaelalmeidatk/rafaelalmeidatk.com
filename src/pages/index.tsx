@@ -1,26 +1,12 @@
 import React from 'react';
-import {
-  Text,
-  Heading,
-  Stack,
-  Link,
-  chakra,
-  keyframes,
-  Box,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Heading } from '../components/Heading';
+import { Link } from '../components/Link';
 import { getAllPosts, Post } from '../lib/posts';
 import { GetStaticProps } from 'next';
 import { Header } from '../components/Header';
 import { Projects } from '../components/Projects';
 import { BlogPostsList } from '../components/BlogPostsList';
 import { Layout } from '../components/Layout';
-
-const gradientText = keyframes`
-  0% { background-position: 0 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
-`;
 
 type HomeProps = {
   posts: Post[];
@@ -31,24 +17,19 @@ const Home = ({ posts }: HomeProps) => {
     <Layout>
       <Header />
 
-      <Stack spacing={[6, 8, 12]} mt={[4, 8, 14]}>
-        <Box>
-          <Text fontSize={['xl', '2xl']}>Hi there,</Text>
-          <Heading as="h1" fontSize={['3xl', '4xl', '5xl']}>
+      <div className="flex flex-col space-y-6 sm:space-y-8 md:space-y-12 mt-4 sm:mt-8 md:mt-14">
+        <section>
+          <div className="text-xl leading-normal sm:text-2xl sm:leading-normal">
+            Hi there,
+          </div>
+          <h1 className="text-3xl leading-tight sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight font-semibold">
             I'm{' '}
-            <chakra.span
-              // yeah I got these colors from Vercel :P
-              bg="linear-gradient(90deg, #ff4d4d, #f9cb28)"
-              bgClip="text"
-              bgSize="200%"
-              sx={{ WebkitTextFillColor: 'transparent' }}
-              animation={`${gradientText} 10s linear infinite`}
-            >
+            <span className="bg-gradient-to-r from-red-500 to-amber-400 bg-clip-text text-transparent animate-heading bg-[length:200%]">
               Rafael Almeida
-            </chakra.span>{' '}
+            </span>{' '}
             👋
-          </Heading>
-          <Text opacity={0.8} lineHeight={1.6}>
+          </h1>
+          <div className="opacity-80 leading-relaxed">
             I'm a Software Engineer building full-stack web applications with
             React, Node.js, TypeScript, and PostgreSQL. I like to hang out in
             Discord communities to help other developers, you will probably find
@@ -60,20 +41,20 @@ const Home = ({ posts }: HomeProps) => {
             <Link href="https://nextjs.org/discord" isExternal>
               Next.js Discord
             </Link>
-          </Text>
-        </Box>
+          </div>
+        </section>
 
         <Projects />
 
-        <Box>
+        <section>
           <Heading>
-            <NextLink href="/blog" passHref>
-              <Link color="inherit">Blog</Link>
-            </NextLink>
+            <Link href="/blog" className="text-current">
+              Blog
+            </Link>
           </Heading>
           <BlogPostsList posts={posts} size="compact" />
-        </Box>
-      </Stack>
+        </section>
+      </div>
     </Layout>
   );
 };
