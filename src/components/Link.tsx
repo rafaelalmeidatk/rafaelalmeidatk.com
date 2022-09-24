@@ -1,6 +1,6 @@
 import React from 'react';
 import NextLink from 'next/link';
-import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 type LinkProps = React.ComponentProps<'a'> & {
   href: string;
@@ -22,7 +22,10 @@ export const Link = ({
 
   const anchor = (
     <a
-      className={clsx('font-semibold text-blue-300 hover:underline', className)}
+      className={twMerge(
+        'font-semibold text-blue-300 hover:underline',
+        className
+      )}
       href={href}
       {...externalProps}
       {...props}

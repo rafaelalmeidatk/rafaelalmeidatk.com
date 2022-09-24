@@ -19,7 +19,10 @@ export const BlogPostsList = ({ posts, size }: BlogPostsListProps) => {
             size === 'compact' ? 'text-md' : 'text-xl'
           )}
         >
-          <Link href={post.link} className="text-current font-normal">
+          <Link
+            href={post.link}
+            className="text-current hover:no-underline font-normal"
+          >
             <div className="flex flex-col sm:flex-row py-2 sm:items-center">
               <div className="flex-1 mr-3 truncate">{post.title}</div>
               <span className="shrink-0">{formatPostDateShort(post.date)}</span>
