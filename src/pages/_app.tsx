@@ -3,6 +3,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Seo } from '../components/Seo';
 import chakraTheme from '../lib/chakraTheme';
 
+import '../styles/globals.css';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={chakraTheme}>
