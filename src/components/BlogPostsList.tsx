@@ -10,13 +10,13 @@ type BlogPostsListProps = {
 
 export const BlogPostsList = ({ posts, size }: BlogPostsListProps) => {
   return (
-    <ul className="mt-5 space-y-1 divide-y divide-neutral-800">
+    <ul className="mt-5 space-y-1 divide-y divide-neutral-200 dark:divide-neutral-800">
       {posts.map((post, i) => (
         <li
           key={post.slug}
           className={clsx(
             'py-1.5 transition-opacity hover:opacity-70',
-            size === 'compact' ? 'text-md' : 'text-xl'
+            size === 'compact' ? 'text-md' : 'text-lg'
           )}
         >
           <Link

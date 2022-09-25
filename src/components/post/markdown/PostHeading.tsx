@@ -18,7 +18,8 @@ export const PostHeading = ({
     <Tag id={id} className={className}>
       <Link
         href={`#${id}`}
-        className="text-current relative hover:before:content-['#'] hover:before:absolute hover:before:left-[-1.5ch]"
+        variant="text"
+        className="relative hover:before:content-['#'] hover:before:absolute hover:before:left-[-1.5ch]"
       >
         {children}
       </Link>

@@ -69,7 +69,7 @@ export const Post = ({ children, meta }: PostProps) => {
           </header>
 
           <MDXProvider components={markdownComponents}>
-            <section className="[&_code]:bg-neutral-800 [&_code]:text-sm [&_code]:font-semibold [&_code]:py-1 [&_code]:px-1.5">
+            <section className="[&_code]:bg-neutral-200 dark:[&_code]:bg-neutral-800 [&_code]:text-sm [&_code]:font-semibold [&_code]:py-1 [&_code]:px-1.5">
               {children}
             </section>
           </MDXProvider>
