@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import styles from './CodeBlock.module.css';
@@ -55,7 +55,7 @@ const CodeBlock = ({ children, className, metastring }: CodeBlockProps) => {
             const lineProps = getLineProps({ line, key: i });
 
             if (shouldHighlight(i + 1)) {
-              lineProps.className = cx(
+              lineProps.className = clsx(
                 lineProps.className,
                 styles.highlightLine
               );
