@@ -10,7 +10,7 @@ type BlogPostsListProps = {
 
 export const BlogPostsList = ({ posts, size }: BlogPostsListProps) => {
   return (
-    <ul className="mt-5 space-y-1 divide-y divide-neutral-200 dark:divide-neutral-800">
+    <ul className="mt-5 space-y-1 divide-y divide-neutral-300 dark:divide-neutral-800">
       {posts.map((post, i) => (
         <li
           key={post.slug}

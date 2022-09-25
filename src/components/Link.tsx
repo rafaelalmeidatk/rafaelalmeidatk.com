@@ -30,7 +30,7 @@ export const Link = ({
   const anchor = (
     <a
       className={twMerge(
-        'font-semibold hover:underline',
+        'font-semibold no-underline hover:underline',
         variantColors[variant],
         className
       )}

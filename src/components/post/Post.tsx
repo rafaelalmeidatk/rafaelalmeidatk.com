@@ -12,28 +12,11 @@ import { Link } from '../Link';
 
 const markdownComponents: MDXProviderComponents = {
   a: Link,
-  pre: (props) => <div className="mt-3 -mx-4 md:mx-0" {...props} />,
-  h2: (props) => (
-    <PostHeading
-      htmlTag="h2"
-      className="mt-10 mb-4 text-3xl font-semibold"
-      {...props}
-    />
+  pre: (props) => (
+    <div className="mt-3 -mx-4 rounded-none md:rounded-xl md:mx-0" {...props} />
   ),
-  p: (props) => <p className="mt-3 text-lg leading-relaxed" {...props} />,
+  h2: (props) => <PostHeading htmlTag="h2" className="text-3xl" {...props} />,
   code: CodeBlock,
-  blockquote: (props) => (
-    <blockquote
-      className="mt-3 px-3 border-l-4 border-l-neutral-800 italic"
-      {...props}
-    />
-  ),
-  ul: (props) => (
-    <ul className="list-disc mt-3 pl-8 text-lg space-y-3" {...props} />
-  ),
-  ol: (props) => (
-    <ol className="list-decimal mt-3 pl-8 text-lg space-y-3" {...props} />
-  ),
 };
 
 type PostProps = {
@@ -69,7 +52,7 @@ export const Post = ({ children, meta }: PostProps) => {
           </header>
 
           <MDXProvider components={markdownComponents}>
-            <section className="[&_code]:bg-neutral-200 dark:[&_code]:bg-neutral-800 [&_code]:text-sm [&_code]:font-semibold [&_code]:py-1 [&_code]:px-1.5">
+            <section className="prose prose-lg dark:prose-dark max-w-none">
               {children}
             </section>
           </MDXProvider>

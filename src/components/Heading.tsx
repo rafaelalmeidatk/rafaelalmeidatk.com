@@ -11,6 +11,12 @@ export const Heading = ({
   ...props
 }: HeadingProps) => {
   return (
-    <Tag className={twMerge('text-4xl font-semibold', className)} {...props} />
+    <Tag
+      className={twMerge(
+        'text-4xl text-gray-900 dark:text-gray-100  font-semibold',
+        className
+      )}
+      {...props}
+    />
   );
 };

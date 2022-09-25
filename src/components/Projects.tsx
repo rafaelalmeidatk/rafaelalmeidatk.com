@@ -51,7 +51,7 @@ export const Projects = () => {
             href={project.link}
             isExternal
             variant="text"
-            className="group py-3 px-4 relative top-0 transition-all border border-neutral-200 dark:border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
+            className="group py-3 px-4 relative top-0 transition-all border border-neutral-300 dark:border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
           >
             <div className="flex items-center">
               <div className="text-lg font-semibold">{project.title}</div>

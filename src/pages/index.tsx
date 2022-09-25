@@ -19,7 +19,7 @@ const Home = ({ posts }: HomeProps) => {
 
       <div className="flex flex-col space-y-6 sm:space-y-8 md:space-y-12 mt-4 sm:mt-8 md:mt-14">
         <section>
-          <div className="text-xl leading-normal sm:text-2xl sm:leading-normal">
+          <div className="text-xl leading-none sm:text-2xl sm:leading-none">
             Hi there,
           </div>
           <h1 className="text-3xl leading-tight sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight font-semibold">

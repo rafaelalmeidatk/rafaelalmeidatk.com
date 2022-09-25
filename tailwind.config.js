@@ -12,6 +12,25 @@ module.exports = {
       sans: ['Inter', ...fontFamily.sans],
     },
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.700'),
+          },
+        },
+        dark: {
+          css: {
+            color: theme('colors.gray.200'),
+            'h2, h3, h4': {
+              color: theme('colors.gray.100'),
+            },
+            'code, blockquote': {
+              color: theme('colors.gray.200'),
+            },
+          },
+        },
+      }),
+
       keyframes: {
         heading: {
           '0%': { backgroundPosition: '0 50%' },
@@ -24,5 +43,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
