@@ -3,11 +3,22 @@ import NextLink from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
 type LinkProps = React.ComponentProps<'a'> & {
+  variant?: 'link' | 'text';
   href: string;
   isExternal?: boolean;
 };
 
-export const Link = ({ className, href, ...props }: LinkProps) => {
+const variantColors = {
+  link: 'text-blue-500 dark:text-blue-300',
+  text: 'text-current',
+};
+
+export const Link = ({
+  className,
+  href,
+  variant = 'link',
+  ...props
+}: LinkProps) => {
   const isExternal = href.includes('//');
   const externalProps: Partial<LinkProps> = isExternal
     ? {
@@ -19,7 +30,8 @@ export const Link = ({ className, href, ...props }: LinkProps) => {
   const anchor = (
     <a
       className={twMerge(
-        'font-semibold text-blue-300 hover:underline',
+        'font-semibold hover:underline',
+        variantColors[variant],
         className
       )}
       href={href}

@@ -29,7 +29,7 @@ const Home = ({ posts }: HomeProps) => {
             </span>{' '}
             👋
           </h1>
-          <div className="opacity-80 leading-relaxed">
+          <div className="opacity-90 dark:opacity-80 leading-relaxed">
             I'm a Software Engineer building full-stack web applications with
             React, Node.js, TypeScript, and PostgreSQL. I like to hang out in
             Discord communities to help other developers, you will probably find
@@ -48,7 +48,7 @@ const Home = ({ posts }: HomeProps) => {
 
         <section>
           <Heading>
-            <Link href="/blog" className="text-current">
+            <Link href="/blog" variant="text">
               Blog
             </Link>
           </Heading>

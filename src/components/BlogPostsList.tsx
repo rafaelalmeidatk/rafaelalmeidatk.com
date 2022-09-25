@@ -21,7 +21,8 @@ export const BlogPostsList = ({ posts, size }: BlogPostsListProps) => {
         >
           <Link
             href={post.link}
-            className="text-current hover:no-underline font-normal"
+            variant="text"
+            className="hover:no-underline font-normal"
           >
             <div className="flex flex-col sm:flex-row py-2 sm:items-center">
               <div className="flex-1 mr-3 truncate">{post.title}</div>

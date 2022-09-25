@@ -36,7 +36,7 @@ export const Projects = () => {
     <section>
       <Heading>
         <Link
-          className="text-current"
+          variant="text"
           href="https://github.com/rafaelalmeidatk"
           isExternal
         >
@@ -50,7 +50,8 @@ export const Projects = () => {
             key={project.id}
             href={project.link}
             isExternal
-            className="group text-current py-3 px-4 relative top-0 transition-all border border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
+            variant="text"
+            className="group py-3 px-4 relative top-0 transition-all border border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
           >
             <div className="flex items-center">
               <div className="text-lg font-semibold">{project.title}</div>
