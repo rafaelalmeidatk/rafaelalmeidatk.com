@@ -1,5 +1,5 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Heading } from './Heading';
+import { ExternalLinkIcon } from './icons';
 import { Link } from './Link';
 
 const projects = [
@@ -56,11 +56,8 @@ export const Projects = () => {
               <div className="text-lg font-semibold">{project.title}</div>
 
               <ExternalLinkIcon
-                ml={2}
-                boxSize={3}
-                opacity={0}
-                transition="opacity .2s ease"
-                _groupHover={{ opacity: 1 }}
+                size={3}
+                className="mb-0.5 ml-2 transition-opacity opacity-0 group-hover:opacity-100"
               />
             </div>
             <div className="text-sm opacity-80 pointer-events-none font-normal">

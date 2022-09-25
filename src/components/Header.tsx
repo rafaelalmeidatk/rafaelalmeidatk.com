@@ -1,6 +1,5 @@
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useColorMode } from '@chakra-ui/react';
-import { GitHubIcon } from './GitHubIcon';
+import { GitHubIcon, MoonIcon, SunIcon } from './icons';
 import NextLink from 'next/link';
 
 const MENU_ITEMS = ['/', '/blog'];
@@ -26,9 +25,9 @@ export const Header = () => {
           href="https://github.com/rafaelalmeidatk"
           target="_blank"
           rel="noopener"
-          className="block transition  opacity-70 hover:opacity-90"
+          className="block transition opacity-70 hover:opacity-90"
         >
-          <GitHubIcon boxSize={7} />
+          <GitHubIcon size={7} />
         </a>
 
         <button
@@ -38,11 +37,7 @@ export const Header = () => {
           } mode`}
           className="transition w-10 opacity-70 hover:opacity-90"
         >
-          {colorMode === 'light' ? (
-            <MoonIcon boxSize={7} />
-          ) : (
-            <SunIcon boxSize={7} />
-          )}
+          {colorMode === 'light' ? <MoonIcon size={7} /> : <SunIcon size={8} />}
         </button>
       </div>
     </header>
