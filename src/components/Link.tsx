@@ -7,12 +7,8 @@ type LinkProps = React.ComponentProps<'a'> & {
   isExternal?: boolean;
 };
 
-export const Link = ({
-  isExternal = false,
-  className,
-  href,
-  ...props
-}: LinkProps) => {
+export const Link = ({ className, href, ...props }: LinkProps) => {
+  const isExternal = href.includes('//');
   const externalProps: Partial<LinkProps> = isExternal
     ? {
         target: '_blank',

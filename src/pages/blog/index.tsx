@@ -4,8 +4,8 @@ import { Post, getAllPosts } from '../../lib/posts';
 import { Seo } from '../../components/Seo';
 import { Layout } from '../../components/Layout';
 import { Header } from '../../components/Header';
+import { Heading } from '../../components/Heading';
 import { BlogPostsList } from '../../components/BlogPostsList';
-import { Box, Heading } from '@chakra-ui/react';
 
 type BlogProps = {
   posts: Post[];
@@ -17,20 +17,23 @@ const Blog = ({ posts }: BlogProps) => (
 
     <Header />
 
-    <Box flex="1 1 auto">
-      <Heading as="h1" mt={[4, 8, 14]} mb={[4, null, 8]} textAlign="center">
+    <div className="flex-1">
+      <Heading
+        as="h1"
+        className="mt-4 sm:mt-8 md:mt-14 mb-4 md:mb-8 text-center"
+      >
         Blog posts
       </Heading>
 
       <BlogPostsList posts={posts} size="full" />
-    </Box>
+    </div>
   </Layout>
 );
 
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   return {
     props: {

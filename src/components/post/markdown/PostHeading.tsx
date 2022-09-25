@@ -1,35 +1,27 @@
-import { As, Box, Link } from '@chakra-ui/react';
+import { Link } from '../../Link';
 import slugify from 'slugify';
 
 type PostHeadingProps = {
-  htmlTag: As;
+  htmlTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  className?: string;
   children: string;
 };
 
-export const PostHeading = ({ htmlTag, children }: PostHeadingProps) => {
+export const PostHeading = ({
+  htmlTag: Tag,
+  className,
+  children,
+}: PostHeadingProps) => {
   const id = slugify(children, { lower: true });
 
   return (
-    <Box as={htmlTag} id={id}>
+    <Tag id={id} className={className}>
       <Link
-        color="inherit"
         href={`#${id}`}
-        position="relative"
-        _hover={{
-          textDecoration: 'underline',
-          _before: {
-            content: `'#'`,
-            position: 'absolute',
-            left: '-1.5ch',
-          },
-        }}
-        _focus={{
-          outline: 'none',
-          textDecoration: 'underline',
-        }}
+        className="text-current relative hover:before:content-['#'] hover:before:absolute hover:before:left-[-1.5ch]"
       >
         {children}
       </Link>
-    </Box>
+    </Tag>
   );
 };
