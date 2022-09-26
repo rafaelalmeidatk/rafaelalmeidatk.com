@@ -21,8 +21,8 @@ export const getAllPostsSlug = () => {
   );
 };
 
-export const getPostBySlug = (slug: string): Post => {
-  const pageModule = require(`../pages/blog/${slug}.mdx`);
+export const getPostBySlug = async (slug: string): Promise<Post> => {
+  const pageModule = await import(`../pages/blog/${slug}.mdx`);
 
   return {
     slug,
@@ -32,13 +32,13 @@ export const getPostBySlug = (slug: string): Post => {
   };
 };
 
-export const getAllPosts = () => {
+export const getAllPosts = async () => {
   const slugs = getAllPostsSlug();
 
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug)));
+
+  // Sort posts by date in descending order
+  posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 
   return posts;
 };

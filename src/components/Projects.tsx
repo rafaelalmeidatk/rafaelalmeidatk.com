@@ -1,17 +1,6 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  BoxProps,
-  Flex,
-  GridItem,
-  Heading,
-  Link,
-  LinkBox,
-  LinkOverlay,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Heading } from './Heading';
+import { ExternalLinkIcon } from './icons';
+import { Link } from './Link';
 
 const projects = [
   {
@@ -42,14 +31,12 @@ const projects = [
   },
 ];
 
-export const Projects = (props: BoxProps) => {
-  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
-
+export const Projects = () => {
   return (
-    <Box {...props}>
+    <section>
       <Heading>
         <Link
-          color="inherit"
+          variant="text"
           href="https://github.com/rafaelalmeidatk"
           isExternal
         >
@@ -57,46 +44,29 @@ export const Projects = (props: BoxProps) => {
         </Link>
       </Heading>
 
-      <SimpleGrid mt={5} spacing={6} columns={[1, 2]}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 mt-5 gap-6 ">
         {projects.map((project) => (
-          <GridItem
+          <Link
             key={project.id}
-            as={LinkBox}
-            role="group"
-            border="1px solid"
-            borderColor={borderColor}
-            borderRadius="md"
-            py={3}
-            px={4}
-            position="relative"
-            top={0}
-            transition="all 0.2s ease"
-            _hover={{
-              top: '-2px',
-              opacity: 0.9,
-            }}
+            href={project.link}
+            isExternal
+            variant="text"
+            className="group py-3 px-4 relative top-0 transition-all border border-neutral-300 dark:border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
           >
-            <Flex alignItems="center">
-              <Text fontSize="lg" fontWeight="semibold">
-                <LinkOverlay href={project.link} isExternal>
-                  {project.title}
-                </LinkOverlay>
-              </Text>
+            <div className="flex items-center">
+              <div className="text-lg font-semibold">{project.title}</div>
 
               <ExternalLinkIcon
-                ml={2}
-                boxSize={3}
-                opacity={0}
-                transition="opacity .2s ease"
-                _groupHover={{ opacity: 1 }}
+                size={3}
+                className="mb-0.5 ml-2 transition-opacity opacity-0 group-hover:opacity-100"
               />
-            </Flex>
-            <Text fontSize="sm" opacity={0.8} pointerEvents="none">
+            </div>
+            <div className="text-sm opacity-80 pointer-events-none font-normal">
               {project.description}
-            </Text>
-          </GridItem>
+            </div>
+          </Link>
         ))}
-      </SimpleGrid>
-    </Box>
+      </div>
+    </section>
   );
 };
