@@ -17,6 +17,36 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
+            pre: {
+              fontSize: '1rem',
+              background: '#202026',
+              padding: '1.125rem 0',
+              lineHeight: 1.6,
+
+              // https://github.com/atomiks/rehype-pretty-code/blob/36946fbc0318cbae176642becb5d6cbcb390324c/website/tailwind.config.js#L100
+              '> code': {
+                display: 'grid',
+
+                '.word': {
+                  background: 'rgba(200,200,255,0.15)',
+                  padding: '0.25rem',
+                  borderRadius: '0.25rem',
+                },
+                '> .line': {
+                  padding: '0 1.25rem',
+                  borderLeft: `2px solid transparent`,
+                },
+                '> .line.line--highlighted': {
+                  background: 'rgba(200, 200, 255, 0.1)',
+                  borderLeftColor: theme('colors.blue.400'),
+                },
+              },
+            },
+            ':not(pre) > code': {
+              background: 'rgba(200,200,255,0.1)',
+              padding: '0.25rem',
+              borderRadius: '0.25rem',
+            },
           },
         },
         dark: {

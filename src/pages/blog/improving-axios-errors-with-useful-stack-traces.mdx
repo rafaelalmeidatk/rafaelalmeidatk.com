@@ -7,11 +7,11 @@ export const meta = {
   date: '2020-01-14',
 };
 
-export default Post;
+export default (props) => <Post meta={meta} {...props} />;
 
 Axios has some issues with errors, and it is even worse on SSR since the only thing you get when accessing the page is something like this:
 
-```
+```text
 Error: Request failed with status code 500
     at createError (/home/rafael/project/node_modules/axios/lib/core/createError.js:16:15)
     at settle (/home/rafael/project/node_modules/axios/lib/core/settle.js:17:12)

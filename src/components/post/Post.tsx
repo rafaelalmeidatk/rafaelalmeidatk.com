@@ -1,7 +1,7 @@
 import React from 'react';
-import { MDXProvider, MDXProviderComponents } from '@mdx-js/react';
+import { MDXProvider } from '@mdx-js/react';
+import { MDXComponents } from 'mdx/types';
 import { Seo } from '../Seo';
-import CodeBlock from './markdown/CodeBlock';
 import { PostHeading } from './markdown/PostHeading';
 import { Layout } from '../Layout';
 import { Header } from '../Header';
@@ -9,13 +9,16 @@ import { Heading } from '../Heading';
 import { formatPostDate } from '../../lib/postTime';
 import { Link } from '../Link';
 
-const markdownComponents: MDXProviderComponents = {
-  a: Link,
-  pre: (props) => (
-    <div className="mt-3 -mx-4 rounded-none md:rounded-xl md:mx-0" {...props} />
+const markdownComponents: MDXComponents = {
+  a: (props) => <Link href={props.href ?? ''} {...props} />,
+  h2: ({ children, ...props }) => (
+    <PostHeading
+      htmlTag="h2"
+      className="text-3xl"
+      children={children?.toString() ?? ''}
+      {...props}
+    />
   ),
-  h2: (props) => <PostHeading htmlTag="h2" className="text-3xl" {...props} />,
-  code: CodeBlock,
 };
 
 type PostProps = {
@@ -47,7 +50,7 @@ export const Post = ({ children, meta }: PostProps) => {
           </header>
 
           <MDXProvider components={markdownComponents}>
-            <section className="prose prose-lg dark:prose-dark max-w-none">
+            <section className="prose text-lg dark:prose-dark max-w-none">
               {children}
             </section>
           </MDXProvider>

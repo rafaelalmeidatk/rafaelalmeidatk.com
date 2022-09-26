@@ -7,7 +7,7 @@ export const meta = {
   date: '2022-09-11',
 };
 
-export default Post;
+export default (props) => <Post meta={meta} {...props} />;
 
 In React we can share data through different components using props, they can be interpreted as function parameters. When you have a state at the top of the application and need to make it accessible in a component down the component tree, the simplest way is to pass down the state via props.
 
@@ -19,7 +19,7 @@ While the Context API itself is simple, a bad implementation could make the main
 
 A context can be created with `React.createContext()`, this function will return a context object which includes the provider and can be used to read the context value.
 
-<!-- prettier-ignore -->
+{/* prettier-ignore */}
 ```js
 import { createContext, useState } from 'react';
 
@@ -43,14 +43,11 @@ function App() {
 
 To read the value of context in the components down the tree you can use the `useContext` hook. If a provider is not found up in the component tree the default value for the context will be returned (in this case it is `0`).
 
-<!-- prettier-ignore -->
 ```js
 function Display() {
   const counter = useContext(CounterContext);
 
-  return (
-    <div>Counter value: {counter}</div>
-  );
+  return <div>Counter value: {counter}</div>;
 }
 ```
 
@@ -102,16 +99,13 @@ export function useCounter() {
 
 Now all the consumer components have to import is the custom hook:
 
-<!-- prettier-ignore -->
 ```js {1,4}
 import { useCounter } from './CounterProvider';
 
 function Display() {
   const counter = useCounter();
 
-  return (
-    <div>Counter value: {counter}</div>
-  );
+  return <div>Counter value: {counter}</div>;
 }
 ```
 
@@ -137,7 +131,7 @@ export function CounterProvider({ children }) {
 
 To increase the counter, this is what the consumer should do:
 
-<!-- prettier-ignore -->
+{/* prettier-ignore */}
 ```js
 function CounterButton() {
   const { counter, setCounter } = useCounter();
@@ -186,7 +180,7 @@ To determine if the value changed, the Context API uses the `Object.is()` functi
 
 So what is happening is that every time our provider component re-renders we are creating a new object and this will make the equality check to fail. To solve this we can use the `useMemo` hook:
 
-<!-- prettier-ignore -->
+{/* prettier-ignore */}
 ```js {8-11}
 export function CounterProvider({ children }) {
   const [counter, setCounter] = useState(0);
@@ -235,7 +229,7 @@ This default value is allowing the consumers of the provider to run the app with
 
 To fix this we are gonna change the default value to `null`, so if the provider isn't found in the tree above the component we are gonna check for `null` and throw an error. This is easily done by changing the hook we made earlier:
 
-<!-- prettier-ignore -->
+{/* prettier-ignore */}
 ```js
 const CounterContext = createContext(null);
 
@@ -277,7 +271,7 @@ We are using `null` to check if the consumer didn't set up the provider, so the 
 
 This is the final code of the provider with all the tips applied. You can use it as a template for new contexts:
 
-<!-- prettier-ignore -->
+{/* prettier-ignore */}
 ```tsx
 type CounterContextValue = {
   counter: number;
