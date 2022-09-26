@@ -1,5 +1,4 @@
 import React from 'react';
-import assert from 'assert';
 import { MDXProvider, MDXProviderComponents } from '@mdx-js/react';
 import { chakra, Heading, useColorModeValue } from '@chakra-ui/react';
 import { Seo } from '../Seo';
@@ -28,10 +27,6 @@ type PostProps = {
 
 export const Post = ({ children, meta }: PostProps) => {
   const lightBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100');
-
-  assert(meta.title, 'The post is missing a title!');
-  assert(meta.description, 'The post is missing a description!');
-  assert(meta.date, 'The post is missing a date!');
 
   return (
     <>
