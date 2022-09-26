@@ -1,5 +1,4 @@
 import React from 'react';
-import assert from 'assert';
 import { MDXProvider, MDXProviderComponents } from '@mdx-js/react';
 import { Seo } from '../Seo';
 import CodeBlock from './markdown/CodeBlock';
@@ -29,10 +28,6 @@ type PostProps = {
 };
 
 export const Post = ({ children, meta }: PostProps) => {
-  assert(meta.title, 'The post is missing a title!');
-  assert(meta.description, 'The post is missing a description!');
-  assert(meta.date, 'The post is missing a date!');
-
   return (
     <>
       <Seo title={meta.title} description={meta.description} isPost />
