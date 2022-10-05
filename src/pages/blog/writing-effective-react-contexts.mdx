@@ -185,9 +185,9 @@ So what is happening is that every time our provider component re-renders we are
 export function CounterProvider({ children }) {
   const [counter, setCounter] = useState(0);
 
-  const increment = () => {
+  const increment = useCallback(() => {
     setCounter((prev) => prev + 1);
-  };
+  }, []);
 
   const value = useMemo(
     () => ({ counter, increment }),
@@ -203,6 +203,8 @@ export function CounterProvider({ children }) {
 ```
 
 The hook will create the object only once and return the same reference on every re-render as long as the dependency array doesn't change. If any of the values in the dependency array is changed then a new object is created and our provider will correctly trigger a re-render in the consumers to reflect the new value.
+
+Notice that we are now using the `useCallback` hook in the `increment` function. By using this hook we are always receiving the same function reference, if we didn't do that the function would be different on every re-render making our `useMemo` pointless.
 
 ## Avoid big objects as the context value
 
@@ -299,9 +301,9 @@ type CounterProviderProps = {
 export function CounterProvider({ children }: CounterProviderProps) {
   const [counter, setCounter] = useState(0);
 
-  const increment = () => {
+  const increment = useCallback(() => {
     setCounter((prev) => prev + 1);
-  };
+  }, []);
 
   const value = useMemo(
     () => ({ counter, increment }),
