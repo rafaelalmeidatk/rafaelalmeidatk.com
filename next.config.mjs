@@ -34,6 +34,14 @@ const withBundleAnalyzer = nextBundleAnalyzer({
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['mdx', 'jsx', 'js', 'ts', 'tsx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 export default withBundleAnalyzer(withMDX(nextConfig));
