@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   variant?: 'link' | 'text';
   href: string;
+  forceRenderAnchorTag?: boolean;
 };
 
 const variantColors = {
@@ -16,6 +17,7 @@ export const Link = ({
   className,
   href,
   variant = 'link',
+  forceRenderAnchorTag,
   ...props
 }: LinkProps) => {
   const isExternal = href.includes('//');
@@ -26,7 +28,7 @@ export const Link = ({
       }
     : {};
 
-  const Element = isExternal ? 'a' : NextLink;
+  const Element = forceRenderAnchorTag || isExternal ? 'a' : NextLink;
 
   return (
     <Element

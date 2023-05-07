@@ -1,13 +1,9 @@
-import { Post } from '../../components/post/Post';
-
 export const meta = {
   title: 'Improving axios errors with useful stack traces',
   description:
     "Axios has some issues with errors and stack traces, here's how you can fix it yourself",
   date: '2020-01-14',
 };
-
-export default (props) => <Post meta={meta} {...props} />;
 
 Axios has some issues with errors, and it is even worse on SSR since the only thing you get when accessing the page is something like this:
 

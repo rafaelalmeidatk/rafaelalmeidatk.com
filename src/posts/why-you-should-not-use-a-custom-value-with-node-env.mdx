@@ -1,13 +1,9 @@
-import { Post } from '../../components/post/Post';
-
 export const meta = {
   title: 'Why you should not use a custom value with NODE_ENV',
   description:
     'It is common to have multiple stages when deploying an app, but it is not a good idea to use NODE_ENV to switch between them.',
   date: '2020-06-17',
 };
-
-export default (props) => <Post meta={meta} {...props} />;
 
 It is common to have multiple stages when deploying an app: development, staging, QA, production, etc. Depending on which stage the app is running, you may need to tweak some settings, hide an interface, enable some features, and so on. How can we know what stage our app is running in?
 

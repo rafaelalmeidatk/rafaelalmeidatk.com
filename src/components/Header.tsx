@@ -1,3 +1,5 @@
+'use client';
+
 import { useTheme } from 'next-themes';
 import { GitHubIcon, MoonIcon, SunIcon } from './icons';
 import NextLink from 'next/link';

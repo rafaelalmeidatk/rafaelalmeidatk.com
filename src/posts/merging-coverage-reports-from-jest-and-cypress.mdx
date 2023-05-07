@@ -1,12 +1,8 @@
-import { Post } from '../../components/post/Post';
-
 export const meta = {
   title: 'Merging coverage reports from Jest and Cypress',
   description: 'How to merge the coverage reports from both Jest and Cypress',
   date: '2020-01-07',
 };
-
-export default (props) => <Post meta={meta} {...props} />;
 
 Code coverage is a great metric to know what code your tests aren't touching, so you can have some insight on potential locations where you can focus on writing new tests. It is common to use Jest to run integration tests (with something like react-testing-library) and Cypress to run E2E tests, but both have different configurations to emit coverage reports, and they are separated. How could we merge them into a single one, for easy visualization?
 

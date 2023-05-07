@@ -33,7 +33,6 @@ const withBundleAnalyzer = nextBundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['mdx', 'jsx', 'js', 'ts', 'tsx'],
   images: {
     remotePatterns: [
       {

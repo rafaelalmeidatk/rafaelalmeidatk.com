@@ -1,4 +1,4 @@
-import { Link } from '../../Link';
+import { Link } from '../Link';
 import slugify from 'slugify';
 
 type PostHeadingProps = {
@@ -20,6 +20,7 @@ export const PostHeading = ({
         href={`#${id}`}
         variant="text"
         className="relative hover:before:content-['#'] hover:before:absolute hover:before:left-[-1.5ch]"
+        forceRenderAnchorTag
       >
         {children}
       </Link>

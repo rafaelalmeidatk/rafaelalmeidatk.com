@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { join } from 'path';
 
-const postsDirectory = join(process.cwd(), 'src/pages/blog');
+const postsDirectory = join(process.cwd(), 'src/posts');
 
 export type Post = {
   slug: string;
@@ -22,7 +22,7 @@ export const getAllPostsSlug = () => {
 };
 
 export const getPostBySlug = async (slug: string): Promise<Post> => {
-  const pageModule = await import(`../pages/blog/${slug}.mdx`);
+  const pageModule = await import(`../posts/${slug}.mdx`);
 
   return {
     slug,
