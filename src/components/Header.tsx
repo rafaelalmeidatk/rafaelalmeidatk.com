@@ -1,16 +1,10 @@
-'use client';
-
-import { useTheme } from 'next-themes';
-import { GitHubIcon, MoonIcon, SunIcon } from './icons';
+import { GitHubIcon } from './icons';
 import NextLink from 'next/link';
+import ThemeToggle from './ThemeToggle';
 
 const MENU_ITEMS = ['/', '/blog'];
 
 export const Header = () => {
-  const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
-
   return (
     <header className="flex justify-between items-center -mx-3">
       <nav className="flex items-center space-x-2">
@@ -36,13 +30,7 @@ export const Header = () => {
           <GitHubIcon size={7} />
         </a>
 
-        <button
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          className="transition w-10 opacity-70 hover:opacity-90"
-        >
-          {theme === 'light' ? <MoonIcon size={7} /> : <SunIcon size={8} />}
-        </button>
+        <ThemeToggle />
       </div>
     </header>
   );

@@ -50,11 +50,13 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       suppressHydrationWarning
     >
       <body className="text-gray-900 dark:text-gray-200">
-        <div className="px-4 mx-auto max-w-[75ch] my-4 sm:my-8 md:my-14">
-          <Header />
+        <Providers>
+          <div className="px-4 mx-auto max-w-[75ch] my-4 sm:my-8 md:my-14">
+            <Header />
 
-          <Providers>{children}</Providers>
-        </div>
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
