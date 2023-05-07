@@ -70,7 +70,10 @@ export const Post = ({ children, meta }: PostProps) => {
             </div>
           )}
 
-          <MDXProvider components={markdownComponents}>
+          <MDXProvider
+            // @ts-expect-error: mismatch in type versions
+            components={markdownComponents}
+          >
             <section className="prose text-lg dark:prose-dark max-w-none">
               {children}
             </section>
