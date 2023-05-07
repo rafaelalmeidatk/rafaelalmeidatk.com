@@ -20,8 +20,8 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rehype-pretty-code": "^0.3.2",
-    "shiki": "^0.11.1",
+    "rehype-pretty-code": "^0.9.5",
+    "shiki": "^0.14.2",
     "slugify": "^1.6.6",
     "tailwind-merge": "^1.12.0"
   },
