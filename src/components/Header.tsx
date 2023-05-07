@@ -13,10 +13,12 @@ export const Header = () => {
     <header className="flex justify-between items-center -mx-3">
       <nav className="flex items-center space-x-2">
         {MENU_ITEMS.map((item) => (
-          <NextLink key={item} href={item}>
-            <a className="font-mono underline px-3 py-1 transition hover:opacity-80 hover:no-underline">
-              {item}
-            </a>
+          <NextLink
+            key={item}
+            href={item}
+            className="font-mono underline px-3 py-1 transition hover:opacity-80 hover:no-underline"
+          >
+            {item}
           </NextLink>
         ))}
       </nav>

@@ -35,11 +35,7 @@ export const Projects = () => {
   return (
     <section>
       <Heading>
-        <Link
-          variant="text"
-          href="https://github.com/rafaelalmeidatk"
-          isExternal
-        >
+        <Link variant="text" href="https://github.com/rafaelalmeidatk">
           Projects
         </Link>
       </Heading>
@@ -49,7 +45,6 @@ export const Projects = () => {
           <Link
             key={project.id}
             href={project.link}
-            isExternal
             variant="text"
             className="group py-3 px-4 relative top-0 transition-all border border-neutral-300 dark:border-neutral-800 rounded-md hover:top-[-2px] hover:opacity-90 hover:no-underline"
           >

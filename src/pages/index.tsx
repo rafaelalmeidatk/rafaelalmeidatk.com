@@ -33,14 +33,8 @@ const Home = ({ posts }: HomeProps) => {
             I'm a Software Engineer building full-stack web applications with
             React, Node.js, TypeScript, and PostgreSQL. I like to hang out in
             Discord communities to help other developers, you will probably find
-            me in{' '}
-            <Link href="https://www.reactiflux.com/" isExternal>
-              Reactiflux
-            </Link>{' '}
-            or the{' '}
-            <Link href="https://nextjs.org/discord" isExternal>
-              Next.js Discord
-            </Link>
+            me in <Link href="https://www.reactiflux.com/">Reactiflux</Link> or
+            the <Link href="https://nextjs.org/discord">Next.js Discord</Link>
           </div>
         </section>
 
@@ -64,9 +58,5 @@ export default Home;
 export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async () => {
   const posts = await getAllPosts();
 
-  return {
-    props: {
-      posts,
-    },
-  };
+  return { props: { posts } };
 };

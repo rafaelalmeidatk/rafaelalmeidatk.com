@@ -8,7 +8,7 @@ import { Header } from '../Header';
 import { Heading } from '../Heading';
 import { formatPostDate } from '../../lib/postTime';
 import { Link } from '../Link';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const markdownComponents: MDXComponents = {
   a: (props) => <Link href={props.href ?? ''} {...props} />,
