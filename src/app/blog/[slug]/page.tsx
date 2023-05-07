@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from 'next';
+import { ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import { Heading } from '../../../components/Heading';
 import { formatPostDate } from '../../../lib/postTime';
@@ -8,6 +8,9 @@ import { getAllPosts } from '../../../lib/posts';
 type PostProps = {
   params: { slug: string };
 };
+
+// For some reason this is showing an error but the build still passes
+export const dynamicParams = false;
 
 export const generateMetadata = async (
   { params }: PostProps,
